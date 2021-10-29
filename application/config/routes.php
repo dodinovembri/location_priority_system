@@ -67,3 +67,57 @@ $route['user/edit/(:any)'] = 'UserController/edit/$1';
 $route['user/show/(:any)'] = 'UserController/show/$1';
 $route['user/update/(:any)'] = 'UserController/update/$1';
 $route['user/destroy/(:any)'] = 'UserController/destroy/$1';
+
+// routes for criteria
+$route['criteria'] = 'CriteriaController';
+$route['criteria/create'] = 'CriteriaController/create';
+$route['criteria/store'] = 'CriteriaController/store';
+$route['criteria/edit/(:any)'] = 'CriteriaController/edit/$1';
+$route['criteria/show/(:any)'] = 'CriteriaController/show/$1';
+$route['criteria/update/(:any)'] = 'CriteriaController/update/$1';
+$route['criteria/destroy/(:any)'] = 'CriteriaController/destroy/$1';
+
+// routes for criterion value
+$route['criterion_values/(:any)'] = 'CriterionValueController/index/$1';
+$route['criterion_value/create'] = 'CriterionValueController/create';
+$route['criterion_value/store'] = 'CriterionValueController/store';
+$route['criterion_value/edit/(:any)'] = 'CriterionValueController/edit/$1';
+$route['criterion_value/show/(:any)'] = 'CriterionValueController/show/$1';
+$route['criterion_value/update/(:any)'] = 'CriterionValueController/update/$1';
+$route['criterion_value/destroy/(:any)'] = 'CriterionValueController/destroy/$1';
+
+// routes for ranking
+$route['ranking'] = 'RankingController';
+$route['ranking/create'] = 'RankingController/create';
+$route['ranking/store'] = 'RankingController/store';
+$route['ranking/edit/(:any)'] = 'RankingController/edit/$1';
+$route['ranking/show/(:any)'] = 'RankingController/show/$1';
+$route['ranking/update/(:any)'] = 'RankingController/update/$1';
+$route['ranking/destroy/(:any)'] = 'RankingController/destroy/$1';
+
+// routes for profile
+$route['profile'] = 'ProfileController';
+$route['profile/create'] = 'ProfileController/create';
+$route['profile/store/(:any)'] = 'ProfileController/store/$1';
+$route['profile/store_pw/(:any)'] = 'ProfileController/store_pw/$1';
+$route['profile/edit/(:any)'] = 'ProfileController/edit/$1';
+$route['profile/update/(:any)'] = 'ProfileController/update/$1';
+$route['profile/destroy/(:any)'] = 'ProfileController/destroy/$1';
+
+// routes for alternative
+$route['alternative'] = 'AlternativeController';
+$route['alternative/create'] = 'AlternativeController/create';
+$route['alternative/store'] = 'AlternativeController/store';
+$route['alternative/edit/(:any)'] = 'AlternativeController/edit/$1';
+$route['alternative/show/(:any)'] = 'AlternativeController/show/$1';
+$route['alternative/update/(:any)'] = 'AlternativeController/update/$1';
+$route['alternative/destroy/(:any)'] = 'AlternativeController/destroy/$1';
+$route['school_alternative'] = 'AlternativeController/school_alternative';
+
+// routes for alternative value
+$route['alternative_values/(:any)'] = 'AlternativeValueController/index/$1';
+$route['alternative_value/create'] = 'AlternativeValueController/create';
+$route['alternative_value/store'] = 'AlternativeValueController/store';
+$route['alternative_value/edit/(:any)'] = 'AlternativeValueController/edit/$1';
+$route['alternative_value/update/(:any)'] = 'AlternativeValueController/update/$1';
+$route['alternative_value/destroy/(:any)'] = 'AlternativeValueController/destroy/$1';
