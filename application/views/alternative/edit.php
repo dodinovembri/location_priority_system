@@ -42,7 +42,7 @@
                                         <div class="form-group form-material row">
                                             <label class="col-md-3 col-form-label"><?php echo $value->nama_kriteria; ?> </label>
                                             <div class="col-md-9">
-                                                <input type="hidden" name="criteria_id[]" value="<?php echo $value->id; ?>">
+                                                <input type="hidden" name="criteria_id[]" value="<?php echo $value->id_kriteria; ?>">
                                                 <input type="text" class="form-control" name="criteria_alternative[]" value="<?php echo $value->nilai_alternatif; ?>" placeholder="Masukkan nilai" autocomplete="off" required />
                                             </div>
                                         </div>

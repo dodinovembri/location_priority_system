@@ -55,4 +55,9 @@ class AlternativeValueModel extends CI_Model
         $this->db->where('employee_id', $employee_id);
         return $this->db->delete($this->_table);
     }
+
+    public function destroy_by_alternative($id)
+    {
+        return $this->db->query("DELETE FROM nilai_alternatif WHERE id_alternatif = $id");
+    }   
 }

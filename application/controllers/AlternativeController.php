@@ -60,14 +60,14 @@ class AlternativeController extends CI_Controller {
         foreach ($criteria_alternative as $key => $value) {
             $criteria = $this->AlternativeModel->findCriteria($value,  $criteria_id[$key])->row();
             
-            $data = array(
+            $data2 = array(
                 'id_alternatif' => $insert_id,
                 'id_kriteria' => $criteria_id[$key],
                 'id_nilai_kriteria' => $criteria->id,
                 'nilai' => $value
             );
 
-            $this->AlternativeValueModel->insert($data);
+            $this->AlternativeValueModel->insert($data2);
         }
 
         $this->session->set_flashdata('success', "Alternatif berhasil di buat!");
@@ -102,6 +102,7 @@ class AlternativeController extends CI_Controller {
         $criteria_alternative = $this->input->post('criteria_alternative');
         $criteria_id = $this->input->post('criteria_id');
 
+     
         $data = array(
             'kode_alternatif' => $kode_alternatif,
             'nama_alternatif' => $nama_alternatif,
@@ -111,26 +112,27 @@ class AlternativeController extends CI_Controller {
         $this->AlternativeModel->update($data, $id);
         $this->AlternativeValueModel->destroy_by_alternative($id);
         
+
         foreach ($criteria_alternative as $key => $value) {
-            $criteria = $this->AlternativeModel->findCriteria($value)->row();
+            $criteria = $this->AlternativeModel->findCriteria($value,  $criteria_id[$key])->row();
             
-            $data = array(
+            $data2 = array(
                 'id_alternatif' => $id,
                 'id_kriteria' => $criteria_id[$key],
                 'id_nilai_kriteria' => $criteria->id,
                 'nilai' => $value
             );
 
-            $this->AlternativeValueModel->insert($data);
+            $this->AlternativeValueModel->insert($data2);
         }
 
-        $this->AlternativeModel->update($data, $id);
         $this->session->set_flashdata('success', "Alternatif berhasil di ubah!");
         return redirect(base_url('alternative'));
     }
 
     public function destroy($id)
     {
+        $this->AlternativeValueModel->destroy_by_alternative($id);
         $delete = $this->AlternativeModel->destroy($id);        
         $this->session->set_flashdata('success', "Data berhasil di hapus!");
         return redirect(base_url('alternative'));
