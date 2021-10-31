@@ -6,6 +6,14 @@
     $user = $CI->UserModel->getById($user_id)->row();
     ?>
     <div class="navbar-header">
+        <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided" data-toggle="menubar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="hamburger-bar"></span>
+        </button>
+        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
+				data-toggle="collapse">
+				<i class="icon md-more" aria-hidden="true"></i>
+			</button>
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle">
             <a href="<?php echo base_url('home') ?>">
                 <img class="navbar-brand-logo" src="<?php echo base_url('assets/') ?>images/logo_dinkes.png" title="SPK">
@@ -35,7 +43,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                         <span class="avatar avatar-online">
-                            <img src="<?php echo base_url('uploads/user/'); echo $user->gambar; ?>" alt="...">
+                            <img src="<?php echo base_url('uploads/user/');
+                                        echo $user->gambar; ?>" alt="...">
                             <i></i>
                         </span>
                     </a>
