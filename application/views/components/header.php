@@ -1,5 +1,10 @@
 <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
-
+    <?php
+    $CI = &get_instance();
+    $CI->load->model(['UserModel']);
+    $user_id = $this->session->userdata('id');
+    $user = $CI->UserModel->getById($user_id)->row();
+    ?>
     <div class="navbar-header">
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle">
             <a href="<?php echo base_url('home') ?>">
@@ -30,7 +35,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                         <span class="avatar avatar-online">
-                            <img src="<?php echo base_url('assets/') ?>portraits/5.jpg" alt="...">
+                            <img src="<?php echo base_url('uploads/user/'); echo $user->gambar; ?>" alt="...">
                             <i></i>
                         </span>
                     </a>
