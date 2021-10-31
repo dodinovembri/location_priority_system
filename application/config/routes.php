@@ -97,12 +97,9 @@ $route['ranking/destroy/(:any)'] = 'RankingController/destroy/$1';
 
 // routes for profile
 $route['profile'] = 'ProfileController';
-$route['profile/create'] = 'ProfileController/create';
-$route['profile/store/(:any)'] = 'ProfileController/store/$1';
-$route['profile/store_pw/(:any)'] = 'ProfileController/store_pw/$1';
-$route['profile/edit/(:any)'] = 'ProfileController/edit/$1';
 $route['profile/update/(:any)'] = 'ProfileController/update/$1';
-$route['profile/destroy/(:any)'] = 'ProfileController/destroy/$1';
+$route['profile/setting'] = 'ProfileController/setting';
+$route['profile/update_pw/(:any)'] = 'ProfileController/update_pw/$1';
 
 // routes for alternative
 $route['alternative'] = 'AlternativeController';

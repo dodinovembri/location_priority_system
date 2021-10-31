@@ -2,10 +2,10 @@
 <!-- Page -->
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title">Tambah Kriteria</h1>
+        <h1 class="page-title">Tambah Alternatif</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url('home') ?>">Home</a></li>
-            <li class="breadcrumb-item"><a href="<?php echo base_url('criteria') ?>">Kriteria</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url('alternative') ?>">Alternatif</a></li>
             <li class="breadcrumb-item active">Tambah Kritria</li>
         </ol>
     </div>
@@ -18,33 +18,17 @@
                         <!-- Example Horizontal Form -->
                         <div class="example-wrap">
                             <div class="example">
-                                <form method="post" action="<?php echo base_url('criteria/store') ?>">
+                                <form method="post" action="<?php echo base_url('alternative/store') ?>">
                                     <div class="form-group form-material row">
-                                        <label class="col-md-3 col-form-label">Kode Kriteria </label>
+                                        <label class="col-md-3 col-form-label">Kode Alternatif </label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="kode_kriteria" placeholder="Masukkan Kode Kriteria" autocomplete="off" required />
+                                            <input type="text" class="form-control" name="kode_alternatif" placeholder="Masukkan Kode Alternatif" autocomplete="off" required />
                                         </div>
                                     </div>
                                     <div class="form-group form-material row">
-                                        <label class="col-md-3 col-form-label">Nama Kriteria </label>
+                                        <label class="col-md-3 col-form-label">Nama Alternatif </label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="nama_kriteria" placeholder="Masukkan Nama Kriteria" autocomplete="off" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-material row">
-                                        <label class="col-md-3 col-form-label">Jenis Kriteria </label>
-                                        <div class="col-md-9">
-                                            <select class="form-control" name="jenis_kriteria" id="" required>
-                                                <option value="">Select</option>
-                                                <option value="Benefit">Benefit</option>
-                                                <option value="Cost">Cost</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-material row">
-                                        <label class="col-md-3 col-form-label">Bobot Kriteria </label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="bobot" placeholder="Masukkan Bobot Kriteria" autocomplete="off" required />
+                                            <input type="text" class="form-control" name="nama_alternatif" placeholder="Masukkan Nama Alternatif" autocomplete="off" required />
                                         </div>
                                     </div>
                                     <div class="form-group form-material row">
@@ -53,12 +37,21 @@
                                             <textarea class="form-control" name="keterangan" rows="3" placeholder="Masukkan Keterangan"></textarea>
                                         </div>
                                     </div>
+                                    <?php foreach ($criterias as $key => $value) { ?>
+                                        <div class="form-group form-material row">
+                                            <label class="col-md-3 col-form-label"><?php echo $value->nama_kriteria; ?> </label>
+                                            <div class="col-md-9">
+                                                <input type="hidden" name="criteria_id[]" value="<?php echo $value->id; ?>">
+                                                <input type="text" class="form-control" name="criteria_alternative[]" placeholder="Masukkan nilai" autocomplete="off" required />
+                                            </div>
+                                        </div>
+                                    <?php } ?>
                                     <br><br>
                                     <div class="form-group form-material row">
                                         <label class="col-md-3 col-form-label"></label>
                                         <div class="col-md-9">
                                             <button type="submit" class="btn btn-primary">Simpan </button>
-                                            <a href="<?php echo base_url('criteria') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
+                                            <a href="<?php echo base_url('alternative') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
                                         </div>
                                     </div>
                                 </form>

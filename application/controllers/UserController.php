@@ -31,20 +31,12 @@ class UserController extends CI_Controller {
 
     public function store()
     {
-        $nip = $this->input->post('nip');
         $name = $this->input->post('name');
         $email = $this->input->post('email');
-        $position = $this->input->post('position');
         $image = $this->input->post('image');
-        $birth_place = $this->input->post('birth_place');
-        $religion = $this->input->post('religion');
-        $sex = $this->input->post('sex');
-        $address = $this->input->post('address');
-        $phone_number = $this->input->post('phone_number');
         $role_id = $this->input->post('role_id');
         $password = $this->input->post('password');
         $password_confirm = $this->input->post('password_confirm');
-        $status = $this->input->post('status');
 
         if ($password != $password_confirm) {
             $this->session->set_flashdata('warning', "Your password is doesn't match");
@@ -63,36 +55,20 @@ class UserController extends CI_Controller {
             if ($this->upload->do_upload('image'))
             {
                 $data = array(
-                    'nip' => $nip,
                     'name' => $name,
                     'email' => $email,
-                    'position' => $position,
-                    'image' => $this->upload->data('file_name'),
-                    'birth_place' => $birth_place,
-                    'religion' => $religion,
-                    'sex' => $sex,
-                    'address' => $address,
-                    'phone_number' => $phone_number,
+                    'gambar' => $this->upload->data('file_name'),
                     'role_id' => $role_id,
                     'password' => $password,
-                    'status' => $status
                 );
             }
             else
             {                          
                 $data = array(
-                    'nip' => $nip,
                     'name' => $name,
                     'email' => $email,
-                    'position' => $position,
-                    'birth_place' => $birth_place,
-                    'religion' => $religion,
-                    'sex' => $sex,
-                    'address' => $address,
-                    'phone_number' => $phone_number,
                     'role_id' => $role_id,
                     'password' => $password,
-                    'status' => $status
                 );
             }
 
@@ -104,12 +80,16 @@ class UserController extends CI_Controller {
 
     public function show($id)
     {
-        //
+        $data['user'] = $this->UserModel->getById($id)->row();
+
+        $this->load->view('templates/header');
+        $this->load->view('user/show', $data);
+        $this->load->view('templates/footer');
     }
 
     public function edit($id)
     {
-        $data['user'] = $this->UserModel->get_data($id)->row();
+        $data['user'] = $this->UserModel->getById($id)->row();
 
         $this->load->view('templates/header');
         $this->load->view('user/edit', $data);
@@ -122,8 +102,7 @@ class UserController extends CI_Controller {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $password_confirm = $this->input->post('password_confirm');
-        $role = $this->input->post('role');
-        $status = $this->input->post('status');
+        $role_id = $this->input->post('role_id');
 
         if ($password != $password_confirm) {
             $this->session->set_flashdata('warning', "Your password is doesn't match");
@@ -134,8 +113,7 @@ class UserController extends CI_Controller {
                 'name' => $name,
                 'email' => $email,
                 'password' => $password,
-                'role_id' => $role,
-                'status' => $status
+                'role_id' => $role_id,
             );
 
             $update = $this->UserModel->update($data, $id);

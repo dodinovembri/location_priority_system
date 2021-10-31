@@ -61,12 +61,11 @@ class CriteriaController extends CI_Controller {
     public function update($id)
     {
         $data = array(
-            'criteria_code'   => $this->input->post('criteria_code'),
-            'criteria_name'   => $this->input->post('criteria_name'),
-            'criteria_type'   => $this->input->post('criteria_type'),
-            'criteria_weight' => $this->input->post('criteria_weight'),
-            'updated_at'      => date("Y-m-d H-i-s"),
-            'updated_by'      => $this->session->userdata('id')
+            'kode_kriteria'   => $this->input->post('kode_kriteria'),
+            'nama_kriteria'   => $this->input->post('nama_kriteria'),
+            'jenis_kriteria'   => $this->input->post('jenis_kriteria'),
+            'bobot' => $this->input->post('bobot'),
+            'keterangan' => $this->input->post('keterangan')
         );
 
         $this->CriteriaModel->update($data, $id);

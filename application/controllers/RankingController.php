@@ -7,7 +7,7 @@ class RankingController extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('function');
-        $this->load->model(['ResultModel', 'HelperModel', 'RatingModel', 'EmployeeModel']);
+        $this->load->model(['RankingModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -16,34 +16,154 @@ class RankingController extends CI_Controller {
 
 	public function index()
 	{
-        // call all related function to helper
-        $weight_fixes = weight_fixes();
-        $data['weight_fixes'] = $weight_fixes;
-        
-        $total_weight_fixes = count($weight_fixes);
-        $s_vector = s_vector($weight_fixes);
+        /**
+         * 1. Define devider
+         */
+        $deviders = $this->RankingModel->getAlternativeValue()->result();
 
-        $s_vector_total = s_vector_total($s_vector, $total_weight_fixes);
-        $sum_s_vector_total = sum_s_vector_total($s_vector_total);       
+        $devider = [];
+        foreach ($deviders as $key => $value) {
+            $nilai = sqrt($value->nilai);
+            $data = array('id_kriteria' => $value->id_kriteria, 'nilai' => $nilai);
+            array_push($devider, $data);
+        }
+        $total_devider = count($devider);
 
-        // $data['v_vector'] = v_vector($s_vector_total, $sum_s_vector_total);
-        $data = v_vector($s_vector_total, $sum_s_vector_total);
-        
-        $n=count($data);
-        // sort with buble sort
-        for ($i=0; $i < $n; $i++) { 
-            for ($j=$n-1; $j > $i ; $j--) { 
-                if ($data[$j]["v_vector"] > $data[$j-1]["v_vector"]) {
-                    $dummy=$data[$j];
-                    $data[$j]=$data[$j-1];
-                    $data[$j-1]=$dummy;
+        /**
+         * 2. Devide all alternative with devider
+         */
+        $alternative_value = [];
+        $alternative_values = $this->RankingModel->getWithJoinAll()->result();
+        $i = 0;
+        foreach ($alternative_values as $key => $value) {
+            $result_devider = $value->nilai / $devider[$i]['nilai'];
+            $data_alternative = array('id_alternatif' => $value->id_alternatif, 'hasil_bagi' => $result_devider);
+            array_push($alternative_value, $data_alternative);
+            $i++;
+            if ($i == $total_devider) {
+                $i = 0;
+            }
+        }
+
+        /**
+         * 3. time with weight
+         */
+        $alternative_after_multiple = [];
+        $weight = $this->RankingModel->getCriteriaAll()->result();
+        $total_weigth = count($weight);
+        $j = 0;
+        foreach ($alternative_value as $key => $value) {
+            $multiplication_result = $value['hasil_bagi'] * $weight[$j]->bobot;
+            $multiplication_data = array('id_alternatif' => $value['id_alternatif'], 'hasil_kali' => $multiplication_result);
+            array_push($alternative_after_multiple, $multiplication_data);
+            $j++;
+            if ($j == $total_weigth) {
+                $j = 0;
+            }
+        }
+
+        /**
+         * 4. Find ideal solution (A+) and (A-)
+         */
+        $total_alternative = $this->RankingModel->countAlternative();
+        $k = 0;
+        for ($i = 0; $i < $total_weigth; $i++) {
+            for ($j = 0; $j < $total_alternative; $j++) {
+                $alternative[$i][] = $alternative_after_multiple[0 + $k]['hasil_kali'];
+                $k = $k + $total_alternative - 1;
+            }
+            $k = $i + 1;
+        }
+
+        foreach ($weight as $key => $value) {
+            // A+
+            if ($value->jenis_kriteria == "Cost") {
+                $a_positive[] = min($alternative[$key]);
+            } else {
+                $a_positive[] = max($alternative[$key]);
+            }
+
+            // A-
+            if ($value->jenis_kriteria == "Cost") {
+                $a_negative[] = max($alternative[$key]);
+            } else {
+                $a_negative[] = min($alternative[$key]);
+            }
+        }
+
+        /**
+         * 4. Find solution (D+) and (D-)
+         */
+        $l = 0;
+        $d_solution = [];
+        $d_positive = 0;
+        $d_negative = 0;
+        $id_alternatif_before = '';
+        foreach ($alternative_after_multiple as $key => $value) {
+            $id_alternatif = $value['id_alternatif'];
+            $hasil_kali = $value['hasil_kali'];
+
+            if ($key == 0) {
+                $id_alternatif_before = $id_alternatif;
+                $d_positive = $d_positive + pow($hasil_kali - $a_positive[$l], 2);
+                $d_negative = $d_negative + pow($hasil_kali - $a_negative[$l], 2);
+            } else {
+                if ($id_alternatif_before == $id_alternatif) {
+                    $d_positive = $d_positive + pow($hasil_kali - $a_positive[$l], 2);
+                    $d_negative = $d_negative + pow($hasil_kali - $a_negative[$l], 2);
+                } else {
+                    $d_positive_push = sqrt($d_positive);
+                    $d_negative_push = sqrt($d_negative);
+                    $data_push = array('id_alternatif' => $id_alternatif_before, 'd_positif' => $d_positive_push, 'd_negatif' => $d_negative_push);
+                    array_push($d_solution, $data_push);
+                    $id_alternatif_before = $id_alternatif;
+                    $d_positive = 0;
+                    $d_negative = 0;
+                    $d_positive = $d_positive + pow($hasil_kali - $a_positive[$l], 2);
+                    $d_negative = $d_negative + pow($hasil_kali - $a_negative[$l], 2);
                 }
             }
-        }        
-        $data['v_vector'] = $data;
-        $data['weight_fixes'] = weight_fixes();
-        $data['s_vector_total'] = s_vector_total($s_vector, $total_weight_fixes);
-        $data['v_vector_not_sort'] = v_vector($s_vector_total, $sum_s_vector_total);
+            $l++;
+            if ($l == ($total_alternative - 1)) {
+                $l = 0;
+            }
+        }
+        // Last record pushed
+        $d_positive_push = sqrt($d_positive);
+        $d_negative_push = sqrt($d_negative);
+        $data_push = array('id_alternatif' => $id_alternatif_before, 'd_positif' => $d_positive_push, 'd_negatif' => $d_negative_push);
+        array_push($d_solution, $data_push);
+
+        /**
+         * 4. Find preference result
+         */
+        $final_results = [];
+        foreach ($d_solution as $key => $value) {
+            $alternative_id = $value['id_alternatif'];
+            $d_negative = $value['d_negatif'];
+            $d_positive = $value['d_positif'];
+
+            $final_result = $d_negative / ($d_negative + $d_positive);
+            $final_push = array('id_alternatif' => $alternative_id, 'preferensi' => $final_result);
+            array_push($final_results, $final_push);
+        }
+
+        /**
+         * 5. Determine ranking
+         */
+        $n = count($final_results);
+        // sort with buble sort
+        for ($i = 0; $i < $n; $i++) {
+            for ($j = $n - 1; $j > $i; $j--) {
+                if ($final_results[$j]["preferensi"] > $final_results[$j - 1]["preferensi"]) {
+                    $dummy = $final_results[$j];
+                    $final_results[$j] = $final_results[$j - 1];
+                    $final_results[$j - 1] = $dummy;
+                }
+            }
+        }
+
+        $data['final_results'] = $final_results;
 
         $this->load->view('templates/header');
 		$this->load->view('ranking/index', $data);
@@ -57,99 +177,12 @@ class RankingController extends CI_Controller {
 
     public function store()
     {
-        // call all related function to helper
-        $weight_fixes = weight_fixes();
-        $data['weight_fixes'] = $weight_fixes;
-        
-        $total_weight_fixes = count($weight_fixes);
-        $s_vector = s_vector($weight_fixes);
-
-        $s_vector_total = s_vector_total($s_vector, $total_weight_fixes);
-        $sum_s_vector_total = sum_s_vector_total($s_vector_total);       
-
-        // $data['v_vector'] = v_vector($s_vector_total, $sum_s_vector_total);
-        $data = v_vector($s_vector_total, $sum_s_vector_total);
-        
-        $n=count($data);
-        // sort with buble sort
-        for ($i=0; $i < $n; $i++) { 
-            for ($j=$n-1; $j > $i ; $j--) { 
-                if ($data[$j]["v_vector"] > $data[$j-1]["v_vector"]) {
-                    $dummy=$data[$j];
-                    $data[$j]=$data[$j-1];
-                    $data[$j-1]=$dummy;
-                }
-            }
-        }    
-        $result = $data;
-
-        $date_of_promotion = $this->input->post('date_of_promotion');
-        $i = 1;
-
-        $this->ResultModel->updateStatus();
-        // $vector = '';
-        // $tot = [];
-
-        foreach ($result as $key => $value) { 
-
-            // if ($vector == $value['v_vector']) {
-            //     $tot[] = $key;
-            // }else{
-            //     $i++;
-            //     $i = $i + count($tot);
-            //     $tot = [];
-            // }
-
-            $data = array(                
-                'date_of_promotion' => $date_of_promotion,
-                'employee_id' => $value['employee_id'],
-                'ranking' => $i,
-                'v_vector' => $value['v_vector'],
-                'status' => 2,
-                'created_at' => date("Y-m-d H-i-s"),
-                'created_by' => $this->session->userdata('id')
-            );
-            $i++;
-            $this->ResultModel->insert($data);
-            // $vector = $value['v_vector'];
-        }
-
-        // for update report
-        $result_id = $this->ResultModel->getLast()->row();
-        $id_same = $this->ResultModel->getAllSame($result_id->v_vector)->result();
-
-        foreach ($id_same as $key => $value) {
-            $employee = $this->EmployeeModel->getById($value->employee_id)->row();        
-            $new_position = $this->input->post('new_position');
-            $status = $this->input->post('status');
-            $status = $status == 4 ? $status : "1";
-            
-            $result_data = array(
-                'status' => $status
-            );
-
-            $employee_data = array(
-                'new_position' => $employee->position + 1,
-                'updated_at'      => date("Y-m-d H-i-s"),
-                'updated_by'      => $this->session->userdata('id')
-            );
-
-            $this->ResultModel->update($result_data, $value->id);        
-            $this->EmployeeModel->update($employee_data, $employee->id);        
-        }
-
-        $this->session->set_flashdata('success', "Data ranking pegawai berhasil disimpan!");
-        return redirect(base_url("employee"));
-
+        // 
     }
 
     public function show($id)
     {
-        $data['employee_ratings'] = $this->RatingModel->getWithBuilder($id)->result();
-
-        $this->load->view('templates/header');
-		$this->load->view('ranking/show', $data);
-        $this->load->view('templates/footer');
+        // 
     }
 
     public function edit($id)

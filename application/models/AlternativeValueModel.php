@@ -2,7 +2,7 @@
 
 class AlternativeValueModel extends CI_Model
 {
-    private $_table = "rating";
+    private $_table = "nilai_alternatif";
 
     public function get()
     {

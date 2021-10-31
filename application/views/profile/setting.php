@@ -2,11 +2,10 @@
 <!-- Page -->
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title">Tambah User</h1>
+        <h1 class="page-title">Profile</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url('home') ?>">Home</a></li>
-            <li class="breadcrumb-item"><a href="<?php echo base_url('user') ?>">User</a></li>
-            <li class="breadcrumb-item active">Tambah User</li>
+            <li class="breadcrumb-item active">Setting</li>
         </ol>
     </div>
 
@@ -18,38 +17,8 @@
                         <!-- Example Horizontal Form -->
                         <div class="example-wrap">
                             <div class="example">
-                                <form method="post" action="<?php echo base_url('user/store') ?>" enctype="multipart/form-data">
-                                    <div class="form-group form-material row">
-                                        <label class="col-md-3 col-form-label">Nama </label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="name" placeholder="Masukkan Nama" autocomplete="off" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-material row">
-                                        <label class="col-md-3 col-form-label">Email </label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" placeholder="Masukkan Email" autocomplete="off" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-material row">
-                                        <label class="col-md-3 col-form-label">Gambar </label>
-                                        <div class="col-md-9">
-                                            <i class="icon md-upload" aria-hidden="true"></i>
-                                            <input type="file" class="form-control" name="image" autocomplete="off" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-material row">
-                                        <label class="col-md-3 col-form-label">Role </label>
-                                        <div class="col-md-9">
-                                            <select class="form-control" name="role_id" id="" required>
-                                                <option value="">Select</option>
-                                                <option value="0">Administrator</option>
-                                                <option value="1">Kepala Seksi</option>
-                                                <option value="2">Staff Dinas Kesehatan</option>
-                                                <option value="3">Petugas Puskesmas</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <?php $this->load->view('components/flash') ?>
+                                <form method="post" action="<?php echo base_url('profile/update_pw/'); echo $profile->id; ?>" enctype="multipart/form-data">
                                     <div class="form-group form-material row">
                                         <label class="col-md-3 col-form-label">Password </label>
                                         <div class="col-md-9">
@@ -89,12 +58,13 @@
                                             }
                                         }
                                     </script>
+
                                     <br><br>
                                     <div class="form-group form-material row">
                                         <label class="col-md-3 col-form-label"></label>
                                         <div class="col-md-9">
                                             <button type="submit" class="btn btn-primary">Simpan </button>
-                                            <a href="<?php echo base_url('user') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
+                                            <a href="<?php echo base_url('home') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
                                         </div>
                                     </div>
                                 </form>

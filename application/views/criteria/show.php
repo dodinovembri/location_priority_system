@@ -48,7 +48,9 @@
                                         <textarea class="form-control" name="keterangan" rows="3" placeholder="Masukkan Keterangan" readonly><?php echo $criteria->keterangan; ?></textarea>
                                     </div>
                                 </div>
+                                <br><br>
                                 <div class="form-group form-material row">
+                                    <label class="col-md-3 col-form-label"></label>
                                     <div class="col-md-9">
                                         <a href="<?php echo base_url('criteria') ?>"><button type="button" class="btn btn-default btn-outline">Kembali</button></a>
                                     </div>

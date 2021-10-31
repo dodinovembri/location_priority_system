@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js css-menubar" lang="en">
 
-<!-- Mirrored from getbootstrapadmin.com/remark/material/base/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 23 Oct 2021 11:28:05 GMT -->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,10 +8,10 @@
   <meta name="description" content="bootstrap material admin template">
   <meta name="author" content="">
 
-  <title>Dashboard | Remark Material Admin Template</title>
+  <title>Sistem Penentuan Lokasi Prioritas Pembinaan</title>
 
-  <link rel="apple-touch-icon" href="<?php echo base_url('assets/') ?>images/apple-touch-icon.png">
-  <link rel="shortcut icon" href="<?php echo base_url('assets/') ?>images/favicon.ico">
+  <link rel="apple-touch-icon" href="<?php echo base_url('assets/') ?>images/logo_dinkes.png">
+  <link rel="shortcut icon" href="<?php echo base_url('assets/') ?>images/logo_dinkes.png">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/bootstrap.minfd53.css?v4.0.1">
@@ -40,11 +39,14 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/') ?>vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.minfd53.css?v4.0.1">
   <link rel="stylesheet" href="<?php echo base_url('assets/') ?>vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.minfd53.css?v4.0.1">
   <link rel="stylesheet" href="<?php echo base_url('assets/') ?>vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.minfd53.css?v4.0.1">
+  <link rel="stylesheet" href="<?php echo base_url('assets/') ?>vendor/toastr/toastr.minfd53.css?v4.0.1">
 
-  <!-- Page -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/') ?>examples/css/dashboard/v1.minfd53.css?v4.0.1">
-  <link rel="stylesheet" href="<?php echo base_url('assets/') ?>examples/css/tables/datatable.minfd53.css?v4.0.1">
-  <link rel="stylesheet" href="<?php echo base_url('assets/') ?>examples/css/uikit/icons.minfd53.css?v4.0.1">
+<!-- Page -->
+<link rel="stylesheet" href="<?php echo base_url('assets/') ?>examples/css/dashboard/v1.minfd53.css?v4.0.1">
+<link rel="stylesheet" href="<?php echo base_url('assets/') ?>examples/css/tables/datatable.minfd53.css?v4.0.1">
+<link rel="stylesheet" href="<?php echo base_url('assets/') ?>examples/css/uikit/icons.minfd53.css?v4.0.1">
+<link rel="stylesheet" href="<?php echo base_url('assets/') ?>examples/css/advanced/toastr.minfd53.css?v4.0.1">
+<link rel="stylesheet" href="<?php echo base_url('assets/') ?>examples/css/structure/alerts.minfd53.css?v4.0.1">
 
   <!-- Fonts -->
   <link rel="stylesheet" href="<?php echo base_url('assets/') ?>fonts/material-design/material-design.minfd53.css?v4.0.1">

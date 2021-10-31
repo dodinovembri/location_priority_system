@@ -3,10 +3,10 @@
 <!-- Page -->
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title">List Kriteria</h1>
+        <h1 class="page-title">List Alternatif</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url('home') ?>">Home</a></li>
-            <li class="breadcrumb-item active">Kriteria</li>
+            <li class="breadcrumb-item active">Alternatif</li>
         </ol>
     </div>
 
@@ -15,37 +15,30 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <a href="<?php echo base_url('criteria/create') ?>"><button type="button" class="btn btn-block btn-primary" style="width: 15%; margin-bottom: 2%">Tambah Baru</button></a>
+                <a href="<?php echo base_url('alternative/create') ?>"><button type="button" class="btn btn-block btn-primary" style="width: 15%; margin-bottom: 2%">Tambah Baru</button></a>
                 <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode Kriteria</th>
-                            <th>Nama Kriteria</th>
-                            <th>Jenis</th>
-                            <th>Bobot</th>
+                            <th>Kode Alternatif</th>
+                            <th>Nama Alternatif</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $no = 0;
-                        foreach ($criterias as $key => $value) {
+                        foreach ($alternatives as $key => $value) {
                             $no++;
                         ?>
                             <tr>
                                 <td><?php echo $no; ?></td>
+                                <td><?php echo $value->kode_alternatif; ?></td>
+                                <td><?php echo $value->nama_alternatif; ?></td>
                                 <td>
-                                    <a href="<?php echo base_url('criterion_values/'); echo $value->id; ?>">
-                                        <?php echo $value->kode_kriteria; ?></td>
-                                    </a>
-                                <td><?php echo $value->nama_kriteria; ?></td>
-                                <td><?php echo $value->jenis_kriteria; ?></td>
-                                <td><?php echo $value->bobot; ?></td>
-                                <td>
-                                    <a href="<?php echo base_url('criteria/show/');
+                                    <a href="<?php echo base_url('alternative/show/');
                                                 echo $value->id; ?>"><i class="icon wb-eye" aria-hidden="true" style="margin-right: 2px"></i></a>
-                                    <a href="<?php echo base_url('criteria/edit/');
+                                    <a href="<?php echo base_url('alternative/edit/');
                                                 echo $value->id; ?>"><i class="icon wb-pencil" aria-hidden="true" style="margin-right: 2px"></i></a>
                                     <a href="void::"><i class="icon wb-trash" data-target="#exampleNiftyFadeScale<?php echo $value->id; ?>" data-toggle="modal" aria-hidden="true"></i></a>
                                 </td>
@@ -65,7 +58,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default btn-pure" data-dismiss="modal">Batal</button>
-                                            <a href="<?php echo base_url('criteria/destroy/'); echo $value->id; ?>"><button type="button" class="btn btn-primary">Hapus Data</button></a>
+                                            <a href="<?php echo base_url('alternative/destroy/'); echo $value->id; ?>"><button type="button" class="btn btn-primary">Hapus Data</button></a>
                                         </div>
                                     </div>
                                 </div>

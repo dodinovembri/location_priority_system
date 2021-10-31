@@ -34,12 +34,11 @@ class CriterionValueController extends CI_Controller {
     {
         $criteria_id = $this->session->userdata('criteria_id');
         $data = array(
-            'criteria_id' => $criteria_id,
-            'information' => $this->input->post('information'),
-            'score' => $this->input->post('score'),
-            'benchmark' => $this->input->post('benchmark'),
-            'created_at'      => date("Y-m-d H-i-s"),
-            'created_by'      => $this->session->userdata('id')
+            'id_kriteria' => $criteria_id,
+            'keterangan' => $this->input->post('keterangan'),
+            'nilai_awal' => $this->input->post('nilai_awal'),
+            'nilai_akhir' => $this->input->post('nilai_akhir'),
+            'nilai' => $this->input->post('nilai')
         );
 
         $this->CriterionValueModel->insert($data);
@@ -50,7 +49,11 @@ class CriterionValueController extends CI_Controller {
 
     public function show($id)
     {
-        //
+        $data['criterion_value'] = $this->CriterionValueModel->getById($id)->row();
+
+        $this->load->view('templates/header');
+        $this->load->view('criterion_value/show', $data);
+        $this->load->view('templates/footer');
     }
 
     public function edit($id)
@@ -66,11 +69,10 @@ class CriterionValueController extends CI_Controller {
     {
         $criteria_id = $this->session->userdata('criteria_id');
         $data = array(
-            'information' => $this->input->post('information'),
-            'score' => $this->input->post('score'),
-            'benchmark' => $this->input->post('benchmark'),
-            'updated_at'      => date("Y-m-d H-i-s"),
-            'updated_by'      => $this->session->userdata('id')
+            'keterangan' => $this->input->post('keterangan'),
+            'nilai_awal' => $this->input->post('nilai_awal'),
+            'nilai_akhir' => $this->input->post('nilai_akhir'),
+            'nilai' => $this->input->post('nilai')
         );
 
         $this->CriterionValueModel->update($data, $id);

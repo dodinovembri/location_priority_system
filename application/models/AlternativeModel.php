@@ -2,26 +2,14 @@
 
 class AlternativeModel extends CI_Model
 {
-    private $_table = "employee";
+    private $_table = "alternatif";
 
-    public function get()
+    public function get($status = NULL)
     {
+        if (isset($status)) {
+            $this->db->where('status', $status);
+        }
         return $this->db->get($this->_table);
-    }
-
-    public function getByType()
-    {
-        $this->db->where('type', 4);
-        return $this->db->get($this->_table);
-    }
-
-    public function getByTypes()
-    {
-        $this->db->select('employee.*, division.division_name as division');
-        $this->db->from('employee');
-        $this->db->join('division', 'employee.division_id = division.id', 'left');
-        $this->db->where('type', 4);
-        return $query = $this->db->get();
     }
 
     public function insert($data)
@@ -35,16 +23,29 @@ class AlternativeModel extends CI_Model
         return $this->db->get($this->_table);
     }
 
-    public function getByIds($id)
+    public function getWithJoinById($id)
     {
-        $this->db->where('id', $id);
-        return $this->db->get($this->_table);
+        $this->db->select('nilai_alternatif.*');
+        $this->db->select('kriteria.*');
+        $this->db->select('nilai_kriteria.*');
+        $this->db->select('nilai_alternatif.nilai as nilai_alternatif');
+        $this->db->from('nilai_alternatif');
+        $this->db->join('kriteria', 'nilai_alternatif.id_kriteria = kriteria.id');
+        $this->db->join('nilai_kriteria', 'nilai_alternatif.id_nilai_kriteria = nilai_kriteria.id');
+        $this->db->where('nilai_alternatif.id_alternatif', $id);
+        return $query = $this->db->get();
     }
 
-    public function getByExclude($employee_id)
+    public function getWithJoinAll($id)
     {
-        $this->db->where_not_in('id', $employee_id);
-        return $this->db->get($this->_table);
+        $this->db->select('nilai_alternatif.*');
+        $this->db->select('kriteria.*');
+        $this->db->select('nilai_kriteria.*');
+        $this->db->select('nilai_alternatif.nilai as nilai_alternatif');
+        $this->db->from('nilai_alternatif');
+        $this->db->join('kriteria', 'nilai_alternatif.id_kriteria = kriteria.id');
+        $this->db->join('nilai_kriteria', 'nilai_alternatif.id_nilai_kriteria = nilai_kriteria.id');
+        return $query = $this->db->get();
     }
 
     public function update($data, $id)
@@ -58,11 +59,20 @@ class AlternativeModel extends CI_Model
         $this->db->where('id', $id);
         return $this->db->delete($this->_table);
     }
+    public function check_auth($username, $password)
+    {
+        $this->db->where('email', $username);
+        $this->db->where('password', $password);
+        return $this->db->get($this->_table);
+    }
 
     public function count()
     {
-        $this->db->where('type', 4);
-        $this->db->from("employee");
-        return $this->db->count_all_results();
+        return $this->db->count_all($this->_table);
+    }
+
+    public function findCriteria($nilai, $id_kriteria)
+    {
+        return $this->db->query("SELECT * FROM nilai_kriteria WHERE $nilai BETWEEN nilai_awal AND nilai_akhir AND id_kriteria = $id_kriteria");
     }
 }

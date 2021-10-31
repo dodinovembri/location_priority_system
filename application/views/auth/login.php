@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="bootstrap material admin template">
+    <meta name="description" content="Sistem Pendukung Keputusan Penentuan Lokasi Prioritas Pembinaan Kesehatan Lingkungan dan Sanitasi Menggunakan Metode Technique for Order Preference by Similarity to Ideal Solution (TOPSIS)">
     <meta name="author" content="">
 
-    <title>Login</title>
+    <title>Login Page</title>
 
-    <link rel="apple-touch-icon" href="<?php echo base_url('assets/images/apple-touch-icon.png') ?>">
-    <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico') ?>">
+    <link rel="apple-touch-icon" href="<?php echo base_url('assets/images/logo_dinkes.png') ?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/images/logo_dinkes.png') ?>">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.minfd53.css?v4.0.1') ?>">
@@ -50,28 +50,38 @@
         <div class="page-content">
             <div class="page-brand-info">
                 <div class="brand">
-                    <img class="brand-img" src="<?php echo base_url('assets/images/logo%402x.png') ?>" alt="...">
+                    <img class="brand-img" src="<?php echo base_url('assets/images/logo_dinkes.png') ?>" width="40px" alt="...">
                     <h2 class="brand-text font-size-20">DINAS KESEHATAN KOTA PALEMBANG</h2>
                 </div>
                 <p class="font-size-20">Sistem Pendukung Keputusan Penentuan Lokasi Prioritas Pembinaan Kesehatan & Sanitasi.</p>
             </div>
 
-            <div class="page-login-main" style="margin-top: -80px;">
-                <div class="brand hidden-md-up">
-                    <img class="brand-img" src="<?php echo base_url('assets/images/logo-colored%402x.png') ?>" alt="...">
-                    <h3 class="brand-text font-size-40">Remark</h3>
-                </div>
+            <div class="page-login-main">
                 <h3 class="font-size-24">Sign In</h3>
-
                 <form method="post" action="<?php echo base_url('auth/login') ?>" autocomplete="off">
+                    <?php $this->load->view('components/flash') ?>
                     <div class="form-group form-material floating" data-plugin="formMaterial">
-                        <input type="email" class="form-control empty" id="inputEmail" name="email">
+                        <input type="email" class="form-control empty" id="inputEmail" name="email" required>
                         <label class="floating-label" for="inputEmail">Email</label>
                     </div>
                     <div class="form-group form-material floating" data-plugin="formMaterial">
-                        <input type="password" class="form-control empty" id="inputPassword" name="password">
+                        <input type="password" class="form-control empty" id="pass" name="password" style="width: 90%; display:inline-block" required>
+                        &nbsp;<span id="mybutton" onclick="change()"><i class="icon md-eye" aria-hidden="true"></i></span>
                         <label class="floating-label" for="inputPassword">Password</label>
                     </div>
+                    <script>
+                        function change() {
+                            var x = document.getElementById('pass').type;
+
+                            if (x == 'password') {
+                                document.getElementById('pass').type = 'text';
+                                document.getElementById('mybutton').innerHTML = '<i class="icon md-eye-off" aria-hidden="true"></i>';
+                            } else {
+                                document.getElementById('pass').type = 'password';
+                                document.getElementById('mybutton').innerHTML = '<i class="icon md-eye"></i>';
+                            }
+                        }
+                    </script>
                     <div class="form-group clearfix">
                         <div class="checkbox-custom checkbox-inline checkbox-primary float-left">
                             <input type="checkbox" id="remember" name="checkbox">
@@ -151,7 +161,6 @@
             });
         })(document, window, jQuery);
     </script>
-
 
 </body>
 

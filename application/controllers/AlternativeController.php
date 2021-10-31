@@ -1,148 +1,139 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AlternativeController extends CI_Controller
-{
+class AlternativeController extends CI_Controller {
 
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['AlternativeModel', 'DivisionModel']); 
+        $this->load->model(['AlternativeModel', 'AlternativeValueModel', 'CriteriaModel']);
+
+        if ($this->session->userdata('logged_in') != 1) {
+            return redirect(base_url('login'));
+        }
     }
 
-    public function index()
-    {
-        $data['employees'] = $this->EmployeeModel->getByTypes()->result();
+	public function index()
+	{
+        $data['alternatives'] = $this->AlternativeModel->get()->result();
 
         $this->load->view('templates/header');
-        $this->load->view('employee/index', $data);
+		$this->load->view('alternative/index', $data);
         $this->load->view('templates/footer');
-    }
+	}
 
+    public function alternative_value()
+	{
+        $data['alternatives'] = $this->AlternativeModel->get()->result();
+
+        $this->load->view('templates/header');
+		$this->load->view('alternative/alternative_value', $data);
+        $this->load->view('templates/footer');
+	}
+    
     public function create()
     {
-        $data['divisions'] = $this->DivisionModel->get()->result();
+        $data['criterias'] = $this->CriteriaModel->get()->result();
 
         $this->load->view('templates/header');
-        $this->load->view('employee/create', $data);
+        $this->load->view('alternative/create', $data);
         $this->load->view('templates/footer');
     }
 
     public function store()
     {
-        // for image
-        $image = uniqid();
-        $config['upload_path']          = './uploads/employee/';
-        $config['allowed_types']        = 'gif|jpg|png';            
-        $config['file_name']            = $image;
+        $kode_alternatif = $this->input->post('kode_alternatif');
+        $nama_alternatif = $this->input->post('nama_alternatif');
+        $keterangan = $this->input->post('keterangan');
+        $criteria_alternative = $this->input->post('criteria_alternative');
+        $criteria_id = $this->input->post('criteria_id');
 
-        $this->load->library('upload', $config); 
+        $data = array(
+            'kode_alternatif' => $kode_alternatif,
+            'nama_alternatif' => $nama_alternatif,
+            'keterangan' => $keterangan
+        );
 
-        if ($this->upload->do_upload('image'))
-        {
+        $this->AlternativeModel->insert($data);
+        $insert_id = $this->db->insert_id();
+        
+        foreach ($criteria_alternative as $key => $value) {
+            $criteria = $this->AlternativeModel->findCriteria($value,  $criteria_id[$key])->row();
+            
             $data = array(
-                'name'       => $this->input->post('name'),
-                'nik'        => $this->input->post('nik'),
-                'gender'     => $this->input->post('gender'),
-                'email'      => $this->input->post('email'),
-                'image'      => $this->upload->data('file_name'),
-                'location'   => $this->input->post('location'),
-                'division_id'   => $this->input->post('division_id'),
-                'position'   => $this->input->post('position'),
-                'created_at' => date("Y-m-d H-i-s"),
-                'created_by' => $this->session->userdata('id')
+                'id_alternatif' => $insert_id,
+                'id_kriteria' => $criteria_id[$key],
+                'id_nilai_kriteria' => $criteria->id,
+                'nilai' => $value
             );
-    
-            $this->EmployeeModel->insert($data);
-            $this->session->set_flashdata('success', "Data pegawai berhasil ditambahkan!");
-            return redirect(base_url('employee'));            
+
+            $this->AlternativeValueModel->insert($data);
         }
-        else
-        {                          
-            $data = array(
-                'name'       => $this->input->post('name'),
-                'nik'        => $this->input->post('nik'),
-                'gender'     => $this->input->post('gender'),
-                'email'      => $this->input->post('email'),
-                'location'   => $this->input->post('location'),
-                'division_id'   => $this->input->post('division_id'),
-                'position'   => $this->input->post('position'),
-                'created_at' => date("Y-m-d H-i-s"),
-                'created_by' => $this->session->userdata('id')
-            );
-    
-            $this->EmployeeModel->insert($data);
-            $this->session->set_flashdata('success', "Data pegawai berhasil ditambahkan!");
-            return redirect(base_url('employee'));
-        }
+
+        $this->session->set_flashdata('success', "Alternatif berhasil di buat!");
+        return redirect(base_url('alternative'));
     }
 
     public function show($id)
     {
-        //
+        $data['alternative'] = $this->AlternativeModel->getById($id)->row();
+        $data['criteria_alternative'] = $this->AlternativeModel->getWithJoinById($id)->result();
+
+        $this->load->view('templates/header');
+        $this->load->view('alternative/show', $data);
+        $this->load->view('templates/footer');
     }
 
     public function edit($id)
     {
-        $data['employee'] = $this->EmployeeModel->getById($id)->row();
-        $data['divisions'] = $this->DivisionModel->get()->result();
+        $data['alternative'] = $this->AlternativeModel->getById($id)->row();
+        $data['criteria_alternative'] = $this->AlternativeModel->getWithJoinById($id)->result();
 
         $this->load->view('templates/header');
-        $this->load->view('employee/edit', $data);
-        $this->load->view('templates/footer');        
+        $this->load->view('alternative/edit', $data);
+        $this->load->view('templates/footer');
     }
 
     public function update($id)
     {
-        // for image
-        $image = uniqid();
-        $config['upload_path']          = './uploads/employee/';
-        $config['allowed_types']        = 'gif|jpg|png';            
-        $config['file_name']            = $image;
+        $kode_alternatif = $this->input->post('kode_alternatif');
+        $nama_alternatif = $this->input->post('nama_alternatif');
+        $keterangan = $this->input->post('keterangan');
+        $criteria_alternative = $this->input->post('criteria_alternative');
+        $criteria_id = $this->input->post('criteria_id');
 
-        $this->load->library('upload', $config); 
+        $data = array(
+            'kode_alternatif' => $kode_alternatif,
+            'nama_alternatif' => $nama_alternatif,
+            'keterangan' => $keterangan
+        );
 
-        if ($this->upload->do_upload('image'))
-        {
+        $this->AlternativeModel->update($data, $id);
+        $this->AlternativeValueModel->destroy_by_alternative($id);
+        
+        foreach ($criteria_alternative as $key => $value) {
+            $criteria = $this->AlternativeModel->findCriteria($value)->row();
+            
             $data = array(
-                'name'       => $this->input->post('name'),
-                'nik'        => $this->input->post('nik'),
-                'gender'     => $this->input->post('gender'),
-                'image'      => $this->upload->data('file_name'),
-                'location'   => $this->input->post('location'),
-                'division_id'   => $this->input->post('division_id'),
-                'position'   => $this->input->post('position'),
-                'updated_at' => date("Y-m-d H-i-s"),
-                'updated_by' => $this->session->userdata('id')
+                'id_alternatif' => $id,
+                'id_kriteria' => $criteria_id[$key],
+                'id_nilai_kriteria' => $criteria->id,
+                'nilai' => $value
             );
-    
-            $this->EmployeeModel->update($data, $id);
-            $this->session->set_flashdata('success', "Data pegawai berhasil diubah!");
-            return redirect(base_url('employee'));          
+
+            $this->AlternativeValueModel->insert($data);
         }
-        else
-        {                          
-            $data = array(
-                'name'       => $this->input->post('name'),
-                'nik'        => $this->input->post('nik'),
-                'gender'     => $this->input->post('gender'),
-                'location'   => $this->input->post('location'),
-                'division_id'   => $this->input->post('division_id'),
-                'position'   => $this->input->post('position'),
-                'updated_at' => date("Y-m-d H-i-s"),
-                'updated_by' => $this->session->userdata('id')
-            );
-    
-            $this->EmployeeModel->update($data, $id);
-            $this->session->set_flashdata('success', "Data pegawai berhasil diubah!");
-            return redirect(base_url('employee'));
-        }
+
+        $this->AlternativeModel->update($data, $id);
+        $this->session->set_flashdata('success', "Alternatif berhasil di ubah!");
+        return redirect(base_url('alternative'));
     }
 
     public function destroy($id)
     {
-        $this->EmployeeModel->destroy($id);        
-        $this->session->set_flashdata('success', "Data pegawai berhasil dihapus!");
-        return redirect(base_url('employee'));
+        $delete = $this->AlternativeModel->destroy($id);        
+        $this->session->set_flashdata('success', "Data berhasil di hapus!");
+        return redirect(base_url('alternative'));
     }
+    
 }

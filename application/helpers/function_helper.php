@@ -5,11 +5,11 @@
             if ($role_id == 0) {
                 return "Administrator";
             }elseif ($role_id == 1) {
-                return "Kasi";
+                return "Kepala Seksi";
             }elseif ($role_id == 2) {
-                return "Staff Ahli";
+                return "Staff Dinas Kesehatan";
             }elseif ($role_id == 3) {
-                return "Visitor";
+                return "Petugas Puskesmas";
             }
         }
     }

@@ -15,14 +15,14 @@
                         <span class="site-menu-title">Alternatif</span>
                     </a>
                 </li>
-                <li class="site-menu-item">
-                    <a href="<?php echo base_url('alternative') ?>">
+                <li class="site-menu-item <?php if ($this->uri->segment(1) == "ranking")  echo "active"; ?>">
+                    <a href="<?php echo base_url('ranking') ?>">
                         <i class="site-menu-icon md-google-pages" aria-hidden="true"></i>
                         <span class="site-menu-title">Ranking</span>
                     </a>
                 </li>
                 <li class="site-menu-category">Master</li>
-                <li class="site-menu-item <?php if ($this->uri->segment(1) == "criteria")  echo "active"; ?>">
+                <li class="site-menu-item <?php if ($this->uri->segment(1) == "criteria" || $this->uri->segment(1) == "criterion_values" || $this->uri->segment(1) == "criterion_value") echo "active"; ?>">
                     <a href="<?php echo base_url('criteria') ?>">
                         <i class="site-menu-icon md-border-all" aria-hidden="true"></i>
                         <span class="site-menu-title">Kelola Kriteria</span>

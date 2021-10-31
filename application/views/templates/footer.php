@@ -44,6 +44,7 @@
   <script src="<?php echo base_url('assets/') ?>vendor/datatables.net-buttons-bs4/buttons.bootstrap4.minfd53.js?v4.0.1"></script>
   <script src="<?php echo base_url('assets/') ?>vendor/asrange/jquery-asRange.minfd53.js?v4.0.1"></script>
   <script src="<?php echo base_url('assets/') ?>vendor/bootbox/bootbox.minfd53.js?v4.0.1"></script>
+  <script src="<?php echo base_url('assets/') ?>vendor/toastr/toastr.minfd53.js?v4.0.1"></script>
 
   <!-- Scripts -->
   <script src="<?php echo base_url('assets/') ?>js/State.minfd53.js?v4.0.1"></script>
@@ -79,6 +80,7 @@
 
 
   <script src="<?php echo base_url('assets/') ?>examples/js/dashboard/v1.minfd53.js?v4.0.1"></script>
+  <script src="<?php echo base_url('assets/') ?>js/Plugin/toastr.minfd53.js?v4.0.1"></script>
 
 </body>
 

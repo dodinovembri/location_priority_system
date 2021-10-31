@@ -2,7 +2,7 @@
 
 class CriterionValueModel extends CI_Model
 {
-    private $_table = "criterion_value";
+    private $_table = "nilai_kriteria";
 
     public function get()
     {
@@ -11,7 +11,7 @@ class CriterionValueModel extends CI_Model
 
     public function getWithBuilder($id)
     {
-        return $this->db->query("SELECT criterion_value.*, criteria.criteria_code AS criteria_code FROM criterion_value JOIN criteria ON criterion_value.criteria_id = criteria.id WHERE criterion_value.criteria_id = $id");
+        return $this->db->query("SELECT nilai_kriteria.*, kriteria.kode_kriteria AS kode_kriteria FROM nilai_kriteria JOIN kriteria ON nilai_kriteria.id_kriteria = kriteria.id WHERE nilai_kriteria.id_kriteria = $id");
     }
 
     public function insert($data)
