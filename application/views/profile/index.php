@@ -44,7 +44,7 @@
                                     <label class="col-md-3 col-form-label"></label>
                                         <div class="col-md-9">
                                             <button type="submit" class="btn btn-primary">Simpan </button>
-                                            <a href="<?php echo base_url('user') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
+                                            <a href="<?php echo base_url('home') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
                                         </div>
                                     </div>
                                 </form>
