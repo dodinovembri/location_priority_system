@@ -118,3 +118,12 @@ $route['alternative_value/store'] = 'AlternativeValueController/store';
 $route['alternative_value/edit/(:any)'] = 'AlternativeValueController/edit/$1';
 $route['alternative_value/update/(:any)'] = 'AlternativeValueController/update/$1';
 $route['alternative_value/destroy/(:any)'] = 'AlternativeValueController/destroy/$1';
+
+// routes for alternative
+$route['alternative_chart'] = 'AlternativeChartController';
+$route['alternative_chart/create'] = 'AlternativeChartController/create';
+$route['alternative_chart/store'] = 'AlternativeChartController/store';
+$route['alternative_chart/edit/(:any)'] = 'AlternativeChartController/edit/$1';
+$route['alternative_chart/show/(:any)'] = 'AlternativeChartController/show/$1';
+$route['alternative_chart/update/(:any)'] = 'AlternativeChartController/update/$1';
+$route['alternative_chart/destroy/(:any)'] = 'AlternativeChartController/destroy/$1';
