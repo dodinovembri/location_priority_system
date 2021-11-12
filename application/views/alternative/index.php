@@ -15,7 +15,9 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <a href="<?php echo base_url('alternative/create') ?>"><button type="button" class="btn btn-block btn-primary" style="width: 15%; margin-bottom: 2%">Tambah Baru</button></a>
+                <?php if ($this->session->userdata('role_id') == 0 || $this->session->userdata('role_id') == 2) { ?>
+                    <a href="<?php echo base_url('alternative/create') ?>"><button type="button" class="btn btn-block btn-primary" style="width: 15%; margin-bottom: 2%">Tambah Baru</button></a>
+                <?php } ?>
                 <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
                     <thead>
                         <tr>
@@ -36,11 +38,13 @@
                                 <td><?php echo $value->kode_alternatif; ?></td>
                                 <td><?php echo $value->nama_alternatif; ?></td>
                                 <td>
-                                    <a href="<?php echo base_url('alternative/show/');
-                                                echo $value->id; ?>"><i class="icon wb-eye" aria-hidden="true" style="margin-right: 2px"></i></a>
-                                    <a href="<?php echo base_url('alternative/edit/');
-                                                echo $value->id; ?>"><i class="icon wb-pencil" aria-hidden="true" style="margin-right: 2px"></i></a>
-                                    <a href="void::"><i class="icon wb-trash" data-target="#exampleNiftyFadeScale<?php echo $value->id; ?>" data-toggle="modal" aria-hidden="true"></i></a>
+                                    <?php if ($this->session->userdata('role_id') == 0 || $this->session->userdata('role_id') == 2) { ?>
+                                        <a href="<?php echo base_url('alternative/show/'); echo $value->id; ?>"><i class="icon wb-eye" aria-hidden="true" style="margin-right: 2px"></i></a>
+                                        <a href="<?php echo base_url('alternative/edit/'); echo $value->id; ?>"><i class="icon wb-pencil" aria-hidden="true" style="margin-right: 2px"></i></a>
+                                        <a href="void::"><i class="icon wb-trash" data-target="#exampleNiftyFadeScale<?php echo $value->id; ?>" data-toggle="modal" aria-hidden="true"></i></a>
+                                    <?php } elseif ($this->session->userdata('role_id') == 3) { ?>
+                                        <a href="<?php echo base_url('alternative/edit/'); echo $value->id; ?>"><i class="icon wb-pencil" aria-hidden="true" style="margin-right: 2px"></i></a>
+                                    <?php } ?>
                                 </td>
                             </tr>
                             <!-- Modal -->

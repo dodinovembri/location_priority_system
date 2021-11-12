@@ -15,9 +15,7 @@ class AlternativeChartController extends CI_Controller {
 
 	public function index()
 	{
-        $data['alternatives'] = $this->AlternativeValueModel->get()->result();
-        // print_r(json_encode($data['alternatives']));
-        // die;
+        $data['criterias'] = $this->CriteriaModel->get()->result();
 
         $this->load->view('templates/header');
 		$this->load->view('alternative_chart/index', $data);

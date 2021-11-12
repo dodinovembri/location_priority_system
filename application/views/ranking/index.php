@@ -1,5 +1,7 @@
 <?php $this->load->view('components/header') ?>
 
+<?php $this->load->view('components/header_datatables_requirements') ?>
+
 <!-- Page -->
 <div class="page">
     <div class="page-header">
@@ -15,7 +17,7 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+                <table id="example" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>Ranking</th>
@@ -50,3 +52,5 @@
     </div>
 </div>
 <!-- End Page -->
+
+<?php $this->load->view('components/footer_datatables_requirements') ?>

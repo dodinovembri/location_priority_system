@@ -23,7 +23,13 @@ class AlternativeValueModel extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->get($this->_table);
-    } 
+    }
+    
+    public function getByCriteriaId($id)
+    {
+        $this->db->where('id_kriteria', $id);
+        return $this->db->get($this->_table);
+    }
     
     public function getByIds($id)
     {

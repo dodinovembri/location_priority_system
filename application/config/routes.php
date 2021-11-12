@@ -94,6 +94,8 @@ $route['ranking/edit/(:any)'] = 'RankingController/edit/$1';
 $route['ranking/show/(:any)'] = 'RankingController/show/$1';
 $route['ranking/update/(:any)'] = 'RankingController/update/$1';
 $route['ranking/destroy/(:any)'] = 'RankingController/destroy/$1';
+$route['ranking_step'] = 'RankingController/step';
+
 
 // routes for profile
 $route['profile'] = 'ProfileController';
@@ -112,6 +114,7 @@ $route['alternative/destroy/(:any)'] = 'AlternativeController/destroy/$1';
 $route['school_alternative'] = 'AlternativeController/school_alternative';
 
 // routes for alternative value
+$route['alternative_value'] = 'AlternativeValueController';
 $route['alternative_values/(:any)'] = 'AlternativeValueController/index/$1';
 $route['alternative_value/create'] = 'AlternativeValueController/create';
 $route['alternative_value/store'] = 'AlternativeValueController/store';
