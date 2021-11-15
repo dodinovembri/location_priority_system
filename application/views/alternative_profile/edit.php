@@ -2,11 +2,11 @@
 <!-- Page -->
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title">Edit Nilai Kriteria Puskesmas</h1>
+        <h1 class="page-title">Edit Puskesmas</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url('home') ?>">Home</a></li>
-            <li class="breadcrumb-item"><a href="<?php echo base_url('alternative') ?>">Alternatif</a></li>
-            <li class="breadcrumb-item active">Edit Nilai Kriteria Puskesmas</li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url('alternative_profile') ?>">Puskesmas</a></li>
+            <li class="breadcrumb-item active">Edit Puskesmas</li>
         </ol>
     </div>
 
@@ -18,8 +18,7 @@
                         <!-- Example Horizontal Form -->
                         <div class="example-wrap">
                             <div class="example">
-                                <form method="post" action="<?php echo base_url('alternative/update/');
-                                                            echo $alternative->id; ?>">
+                                <form method="post" action="<?php echo base_url('alternative_profile/update/'); echo $alternative->id; ?>">
                                     <div class="form-group form-material row">
                                         <label class="col-md-3 col-form-label">Kode Alternatif </label>
                                         <div class="col-md-9">
@@ -38,21 +37,24 @@
                                             <textarea class="form-control" name="keterangan" rows="3" placeholder="Masukkan Keterangan"><?php echo $alternative->keterangan ?></textarea>
                                         </div>
                                     </div>
-                                    <?php foreach ($criteria_alternative as $key => $value) { ?>
-                                        <div class="form-group form-material row">
-                                            <label class="col-md-3 col-form-label"><?php echo $value->nama_kriteria; ?> </label>
-                                            <div class="col-md-9">
-                                                <input type="hidden" name="criteria_id[]" value="<?php echo $value->id_kriteria; ?>">
-                                                <input type="text" class="form-control" name="criteria_alternative[]" value="<?php echo $value->nilai_alternatif; ?>" placeholder="Masukkan nilai" autocomplete="off" required />
-                                            </div>
+                                    <div class="form-group form-material row">
+                                        <label class="col-md-3 col-form-label">No Telepon </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="no_telepon" value="<?php echo $alternative->no_telepon ?>" placeholder="Masukkan No Telepon" autocomplete="off" required />
                                         </div>
-                                    <?php } ?>
+                                    </div>
+                                    <div class="form-group form-material row">
+                                        <label class="col-md-3 col-form-label">Email </label>
+                                        <div class="col-md-9">
+                                            <input type="email" class="form-control" name="email" value="<?php echo $alternative->email ?>" placeholder="Masukkan Email" autocomplete="off" required />
+                                        </div>
+                                    </div>
                                     <br><br>
                                     <div class="form-group form-material row">
                                         <label class="col-md-3 col-form-label"></label>
                                         <div class="col-md-9">
                                             <button type="submit" class="btn btn-primary">Simpan </button>
-                                            <a href="<?php echo base_url('alternative') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
+                                            <a href="<?php echo base_url('alternative_profile') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
                                         </div>
                                     </div>
                                 </form>

@@ -120,3 +120,12 @@ $route['alternative_chart/edit/(:any)'] = 'AlternativeChartController/edit/$1';
 $route['alternative_chart/show/(:any)'] = 'AlternativeChartController/show/$1';
 $route['alternative_chart/update/(:any)'] = 'AlternativeChartController/update/$1';
 $route['alternative_chart/destroy/(:any)'] = 'AlternativeChartController/destroy/$1';
+
+// routes for alternative profile
+$route['alternative_profile'] = 'AlternativeProfileController';
+$route['alternative_profile/create'] = 'AlternativeProfileController/create';
+$route['alternative_profile/store'] = 'AlternativeProfileController/store';
+$route['alternative_profile/edit/(:any)'] = 'AlternativeProfileController/edit/$1';
+$route['alternative_profile/show/(:any)'] = 'AlternativeProfileController/show/$1';
+$route['alternative_profile/update/(:any)'] = 'AlternativeProfileController/update/$1';
+$route['alternative_profile/destroy/(:any)'] = 'AlternativeProfileController/destroy/$1';
