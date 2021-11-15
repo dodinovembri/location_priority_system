@@ -37,23 +37,25 @@
 				</div>
 				<!-- End Widget Linearea Two -->
 			</div>
-			<div class="col-xl-3 col-md-6">
-				<!-- Widget Linearea Three -->
-				<div class="card card-shadow" id="widgetLineareaThree">
-					<a href="<?php echo base_url('user') ?>">
-						<div class="card-block p-20 pt-10">
-							<div class="clearfix">
-								<div class="grey-800 float-left py-10">
-									<i class="icon md-account grey-600 font-size-24 vertical-align-bottom mr-5"></i> User
+			<?php if ($this->session->userdata('role_id') != 1) { ?>
+				<div class="col-xl-3 col-md-6">
+					<!-- Widget Linearea Three -->
+					<div class="card card-shadow" id="widgetLineareaThree">
+						<a href="<?php echo base_url('user') ?>">
+							<div class="card-block p-20 pt-10">
+								<div class="clearfix">
+									<div class="grey-800 float-left py-10">
+										<i class="icon md-account grey-600 font-size-24 vertical-align-bottom mr-5"></i> User
+									</div>
+									<span class="float-right grey-700 font-size-30"><?php echo $users ?></span>
 								</div>
-								<span class="float-right grey-700 font-size-30"><?php echo $users ?></span>
+								<div class="ct-chart h-50"></div>
 							</div>
-							<div class="ct-chart h-50"></div>
-						</div>
-					</a>
+						</a>
+					</div>
+					<!-- End Widget Linearea Three -->
 				</div>
-				<!-- End Widget Linearea Three -->
-			</div>
+			<?PHP } ?>
 			<div class="col-xl-3 col-md-6">
 				<!-- Widget Linearea Four -->
 				<div class="card card-shadow" id="widgetLineareaFour">

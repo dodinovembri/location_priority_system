@@ -95,6 +95,13 @@
                             <span class="site-menu-title">Data Kriteria</span>
                         </a>
                     </li>
+                    <li class="site-menu-category">Laporan</li>
+                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "alternative_value_report") echo "active"; ?>">
+                        <a href="<?php echo base_url('alternative_value_report') ?>">
+                            <i class="site-menu-icon md-border-all" aria-hidden="true"></i>
+                            <span class="site-menu-title">Data Nilai Puskesmas</span>
+                        </a>
+                    </li>
                 <?php } elseif ($this->session->userdata('role_id') == 3) { ?>
                     <li class="site-menu-category">Main</li>
                     <li class="site-menu-item <?php if ($this->uri->segment(1) == "home")  echo "active"; ?>">
@@ -113,6 +120,13 @@
                         <a href="<?php echo base_url('alternative_profile') ?>">
                             <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
                             <span class="site-menu-title">Edit Profile Puskesmas</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-category">Master</li>
+                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "criteria" || $this->uri->segment(1) == "criterion_values" || $this->uri->segment(1) == "criterion_value") echo "active"; ?>">
+                        <a href="<?php echo base_url('criteria') ?>">
+                            <i class="site-menu-icon md-border-all" aria-hidden="true"></i>
+                            <span class="site-menu-title">Data Kriteria</span>
                         </a>
                     </li>
                 <?php } ?>

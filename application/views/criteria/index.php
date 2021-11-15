@@ -45,7 +45,7 @@
                                 <td><?php echo $value->jenis_kriteria; ?></td>
                                 <td><?php echo $value->bobot; ?></td>
                                 <td>
-                                    <?php if ($this->session->userdata('role_id') == 0) { ?>
+                                    <?php if ($this->session->userdata('role_id') == 0 || $this->session->userdata('role_id') == 3) { ?>
                                         <a href="<?php echo base_url('criteria/show/'); echo $value->id; ?>"><i class="icon wb-eye" aria-hidden="true" style="margin-right: 2px"></i></a>
                                         <a href="<?php echo base_url('criteria/edit/'); echo $value->id; ?>"><i class="icon wb-pencil" aria-hidden="true" style="margin-right: 2px"></i></a>
                                         <a href="void::"><i class="icon wb-trash" data-target="#exampleNiftyFadeScale<?php echo $value->id; ?>" data-toggle="modal" aria-hidden="true"></i></a>

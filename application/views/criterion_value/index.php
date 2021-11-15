@@ -41,7 +41,7 @@
                                 <td><?php echo $value->keterangan; ?></td>
                                 <td><?php echo $value->nilai; ?></td>
                                 <td>
-                                    <?php if ($this->session->userdata('role_id') == 0) { ?>
+                                    <?php if ($this->session->userdata('role_id') == 0 || $this->session->userdata('role_id') == 3) { ?>
                                         <a href="<?php echo base_url('criterion_value/show/'); echo $value->id; ?>"><i class="icon wb-eye" aria-hidden="true" style="margin-right: 2px"></i></a>
                                         <a href="<?php echo base_url('criterion_value/edit/'); echo $value->id; ?>"><i class="icon wb-pencil" aria-hidden="true" style="margin-right: 2px"></i></a>
                                         <a href="void::"><i class="icon wb-trash" data-target="#exampleNiftyFadeScale<?php echo $value->id; ?>" data-toggle="modal" aria-hidden="true"></i></a>
