@@ -73,7 +73,7 @@
                     <li class="site-menu-item <?php if ($this->uri->segment(1) == "alternative")  echo "active"; ?>">
                         <a href="<?php echo base_url('alternative') ?>">
                             <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
-                            <span class="site-menu-title">Alternatif</span>
+                            <span class="site-menu-title">Puskesmas</span>
                         </a>
                     </li>
                     <li class="site-menu-item <?php if ($this->uri->segment(1) == "ranking_step")  echo "active"; ?>">

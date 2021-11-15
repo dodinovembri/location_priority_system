@@ -15,10 +15,12 @@ class AlternativeValueReportController extends CI_Controller {
 
 	public function index()
 	{
+        $data['alternative_values'] = $this->AlternativeValueModel->getWithBuilder()->result();
+        $data['alternatives'] = $this->AlternativeModel->get()->result();
         $data['criterias'] = $this->CriteriaModel->get()->result();
 
         $this->load->view('templates/header');
-		$this->load->view('alternative_chart/index', $data);
+		$this->load->view('alternative_value_report/index', $data);
         $this->load->view('templates/footer');
 	}
     

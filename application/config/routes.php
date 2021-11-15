@@ -131,4 +131,4 @@ $route['alternative_profile/update/(:any)'] = 'AlternativeProfileController/upda
 $route['alternative_profile/destroy/(:any)'] = 'AlternativeProfileController/destroy/$1';
 
 
-$route['alternative_profile'] = 'AlternativeValueReportController';
+$route['alternative_value_report'] = 'AlternativeValueReportController';

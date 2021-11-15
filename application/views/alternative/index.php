@@ -3,10 +3,10 @@
 <!-- Page -->
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title">List Alternatif</h1>
+        <h1 class="page-title">List Puskesmas</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url('home') ?>">Home</a></li>
-            <li class="breadcrumb-item active">Alternatif</li>
+            <li class="breadcrumb-item active">Puskesmas</li>
         </ol>
     </div>
 
@@ -22,8 +22,11 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode Alternatif</th>
-                            <th>Nama Alternatif</th>
+                            <th>Kode Puskesmas</th>
+                            <th>Nama Puskesmas</th>
+                            <th>Alamat</th>
+                            <th>No Telepon</th>
+                            <th>Email</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -37,6 +40,9 @@
                                 <td><?php echo $no; ?></td>
                                 <td><?php echo $value->kode_alternatif; ?></td>
                                 <td><?php echo $value->nama_alternatif; ?></td>
+                                <td><?php echo $value->alamat; ?></td>
+                                <td><?php echo $value->no_telepon; ?></td>
+                                <td><?php echo $value->email; ?></td>
                                 <td>
                                     <?php if ($this->session->userdata('role_id') == 0 || $this->session->userdata('role_id') == 2) { ?>
                                         <a href="<?php echo base_url('alternative/show/'); echo $value->id; ?>"><i class="icon wb-eye" aria-hidden="true" style="margin-right: 2px"></i></a>

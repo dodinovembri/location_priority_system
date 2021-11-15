@@ -8,6 +8,7 @@ CREATE TABLE alternatif (
 	kode_alternatif VARCHAR(100) NULL,
 	nama_alternatif VARCHAR(100) NULL,
    	keterangan TEXT NULL,
+   	alamat TEXT NULL,
 	no_telepon VARCHAR(50) NULL,
 	email VARCHAR(255) NULL,
 	PRIMARY KEY (id)

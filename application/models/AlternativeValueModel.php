@@ -9,9 +9,9 @@ class AlternativeValueModel extends CI_Model
     	return $this->db->get($this->_table);
     }
 
-    public function getWithBuilder($id)
+    public function getWithBuilder()
     {
-        return $this->db->query("SELECT rating.*, employee.nik AS nik, criterion_value.information AS information, criteria.criteria_code AS criteria_code, criteria.criteria_name AS criteria_name FROM rating JOIN employee ON rating.employee_id = employee.id JOIN criteria ON rating.criteria_id = criteria.id JOIN criterion_value ON rating.criterion_value_id = criterion_value.id WHERE rating.employee_id = $id");
+        return $this->db->query("SELECT nilai_alternatif.*, alternatif.kode_alternatif AS kode_alternatif, alternatif.nama_alternatif AS nama_alternatif FROM nilai_alternatif JOIN alternatif ON nilai_alternatif.id_alternatif = alternatif.id");
     }
 
     public function insert($data)
