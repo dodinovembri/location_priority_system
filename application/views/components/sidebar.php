@@ -76,12 +76,6 @@
                             <span class="site-menu-title">Alternatif</span>
                         </a>
                     </li>
-                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "alternative_value")  echo "active"; ?>">
-                        <a href="<?php echo base_url('alternative_value') ?>">
-                            <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
-                            <span class="site-menu-title">Nilai Alternatif</span>
-                        </a>
-                    </li>
                     <li class="site-menu-item <?php if ($this->uri->segment(1) == "ranking_step")  echo "active"; ?>">
                         <a href="<?php echo base_url('ranking_step') ?>">
                             <i class="site-menu-icon md-google-pages" aria-hidden="true"></i>
