@@ -29,4 +29,14 @@ class RankingModel extends CI_Model
     {
         return $this->db->count_all('alternatif');
     }
+
+    public function getAlternative()
+    {
+        return $this->db->get('alternatif');
+    }
+
+    public function getAlternativeValueList()
+    {
+        return $this->db->get('nilai_alternatif');
+    }
 }

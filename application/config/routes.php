@@ -96,7 +96,6 @@ $route['ranking/update/(:any)'] = 'RankingController/update/$1';
 $route['ranking/destroy/(:any)'] = 'RankingController/destroy/$1';
 $route['ranking_step'] = 'RankingController/step';
 
-
 // routes for profile
 $route['profile'] = 'ProfileController';
 $route['profile/update/(:any)'] = 'ProfileController/update/$1';

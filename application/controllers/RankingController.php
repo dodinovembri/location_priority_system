@@ -319,6 +319,15 @@ class RankingController extends CI_Controller {
             }
         }
 
+        $data['alternatives'] = $this->RankingModel->getAlternative()->result();
+        $data['alternative_values'] = $this->RankingModel->getAlternativeValueList()->result();
+        $data['devider'] = $devider;
+        $data['alternative_values_normalized'] = $alternative_value;
+        $data['weights'] = $weight;
+        $data['alternative_after_multiple'] = $alternative_after_multiple;
+        $data['a_positive'] = $a_positive;
+        $data['a_negative'] = $a_negative;
+        $data['d_solution'] = $d_solution;
         $data['final_results'] = $final_results;
 
         $this->load->view('templates/header');
