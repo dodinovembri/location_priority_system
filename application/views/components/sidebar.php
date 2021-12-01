@@ -121,14 +121,7 @@
                             <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
                             <span class="site-menu-title">Edit Profile Puskesmas</span>
                         </a>
-                    </li>
-                    <li class="site-menu-category">Master</li>
-                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "criteria" || $this->uri->segment(1) == "criterion_values" || $this->uri->segment(1) == "criterion_value") echo "active"; ?>">
-                        <a href="<?php echo base_url('criteria') ?>">
-                            <i class="site-menu-icon md-border-all" aria-hidden="true"></i>
-                            <span class="site-menu-title">Data Kriteria</span>
-                        </a>
-                    </li>
+                    </li>                   
                 <?php } ?>
 
             </ul>
