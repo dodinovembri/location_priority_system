@@ -15,7 +15,6 @@ CREATE TABLE users (
 ## Role
 | Code | Name |
 | ---- | ---- |
-| 0 | Administrator |
 | 1 | Kepala Seksi |
 | 2 | Staff Dinas Kesehatan |
 | 3 | Petugas Puskesmas |
