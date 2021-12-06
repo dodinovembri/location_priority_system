@@ -23,6 +23,12 @@ class AlternativeModel extends CI_Model
         return $this->db->get($this->_table);
     }
 
+    public function getByEmail($email)
+    {
+        $this->db->where('email', $email);
+        return $this->db->get($this->_table);
+    }
+
     public function getWithJoinById($id)
     {
         $this->db->select('nilai_alternatif.*');

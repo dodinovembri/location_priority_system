@@ -15,7 +15,8 @@ class AlternativeProfileController extends CI_Controller {
 
 	public function index()
 	{
-        $data['alternatives'] = $this->AlternativeModel->get()->result();
+        $email = $this->session->userdata('email');
+        $data['alternative'] = $this->AlternativeModel->getByEmail($email)->row();
 
         $this->load->view('templates/header');
 		$this->load->view('alternative_profile/index', $data);

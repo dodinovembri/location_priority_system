@@ -6,7 +6,7 @@ class AlternativeController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['AlternativeModel', 'AlternativeValueModel', 'CriteriaModel']);
+        $this->load->model(['AlternativeModel', 'AlternativeValueModel', 'CriteriaModel', 'UserModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -75,6 +75,14 @@ class AlternativeController extends CI_Controller {
 
             $this->AlternativeValueModel->insert($data2);
         }
+
+        $data_user = array(
+            'name' => $nama_alternatif, 
+            'email' => $email, 
+            'role_id' => 3,
+            'password' =>  md5($email)
+        );
+        $this->UserModel->insert($data_user);
 
         $this->session->set_flashdata('success', "Alternatif berhasil di buat!");
         return redirect(base_url('alternative'));

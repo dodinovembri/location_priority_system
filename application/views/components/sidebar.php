@@ -82,17 +82,11 @@
                             <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
                             <span class="site-menu-title">Dashboard</span>
                         </a>
-                    </li>
-                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "alternative")  echo "active"; ?>">
-                        <a href="<?php echo base_url('alternative') ?>">
-                            <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
-                            <span class="site-menu-title">Puskesmas</span>
-                        </a>
-                    </li>
+                    </li>                    
                     <li class="site-menu-item <?php if ($this->uri->segment(1) == "alternative_profile")  echo "active"; ?>">
                         <a href="<?php echo base_url('alternative_profile') ?>">
                             <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
-                            <span class="site-menu-title">Edit Profile Puskesmas</span>
+                            <span class="site-menu-title">Profile Puskesmas</span>
                         </a>
                     </li>                   
                 <?php } ?>

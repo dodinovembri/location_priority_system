@@ -1,60 +1,60 @@
 <?php $this->load->view('components/header') ?>
-
 <!-- Page -->
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title">List Puskesmas</h1>
+        <h1 class="page-title">Profile</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url('home') ?>">Home</a></li>
-            <li class="breadcrumb-item active">Puskesmas</li>
+            <li class="breadcrumb-item active">Profil Puskesmas</li>
         </ol>
     </div>
 
     <div class="page-content">
-        <!-- Panel Basic -->
         <div class="panel">
-            <div class="panel-body">
-                <?php $this->load->view('components/flash') ?>
-                <?php if ($this->session->userdata('role_id') == 0 || $this->session->userdata('role_id') == 2) { ?>
-                    <a href="<?php echo base_url('alternative/create') ?>"><button type="button" class="btn btn-block btn-primary" style="width: 15%; margin-bottom: 2%">Tambah Baru</button></a>
-                <?php } ?>
-                <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Kode Puskesmas</th>
-                            <th>Nama Puskesmas</th>
-                            <th>Alamat</th>
-                            <th>No Telepon</th>
-                            <th>Email</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $no = 0;
-                        foreach ($alternatives as $key => $value) {
-                            $no++;
-                        ?>
-                            <tr>
-                                <td><?php echo $no; ?></td>
-                                <td><?php echo $value->kode_alternatif; ?></td>
-                                <td><?php echo $value->nama_alternatif; ?></td>
-                                <td><?php echo $value->keterangan; ?></td>
-                                <td><?php echo $value->no_telepon; ?></td>
-                                <td><?php echo $value->email; ?></td>
-                                <td>
-                                    <a href="<?php echo base_url('alternative_profile/show/'); echo $value->id; ?>"><i class="icon wb-eye" aria-hidden="true" style="margin-right: 2px"></i></a>
-                                    <a href="<?php echo base_url('alternative_profile/edit/'); echo $value->id; ?>"><i class="icon wb-pencil" aria-hidden="true" style="margin-right: 2px"></i></a>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+            <div class="panel-body container-fluid">
+                <div class="row row-lg">
+                    <div class="col-md-12 col-lg-12">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <?php $this->load->view('components/flash') ?>
+                                <form method="post" action="<?php echo base_url('alternative_profile/update/'); echo $alternative_profile->id; ?>" enctype="multipart/form-data">
+                                    <div class="form-group form-material row">
+                                        <label class="col-md-3 col-form-label">Nama </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="name" value="<?php echo $alternative_profile->name; ?>" placeholder="Masukkan Nama" autocomplete="off" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material row">
+                                        <label class="col-md-3 col-form-label">Email </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="email" value="<?php echo $alternative_profile->email; ?>" placeholder="Masukkan Email" autocomplete="off" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material row">
+                                        <label class="col-md-3 col-form-label">Gambar </label>
+                                        <div class="col-md-9">
+                                            <img src="<?php echo base_url('uploads/user/'); echo $alternative_profile->gambar; ?>" width="50px" alt="">
+                                            <i class="icon md-upload" aria-hidden="true"></i>
+                                            <input type="file" class="form-control" name="image"  autocomplete="off" />
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group form-material row" >
+                                    <label class="col-md-3 col-form-label"></label>
+                                        <div class="col-md-9">
+                                            <button type="submit" class="btn btn-primary">Simpan </button>
+                                            <a href="<?php echo base_url('home') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- End Panel Basic -->
-
     </div>
 </div>
 <!-- End Page -->
