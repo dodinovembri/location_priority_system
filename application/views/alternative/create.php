@@ -32,9 +32,27 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-material row">
+                                        <label class="col-md-3 col-form-label">Email </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="email" placeholder="Masukkan Email Alternatif" autocomplete="off" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material row">
+                                        <label class="col-md-3 col-form-label">No Telepon </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="no_telepon" placeholder="Masukkan Nomor Telepon" autocomplete="off" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material row">
                                         <label class="col-md-3 col-form-label">Keterangan </label>
                                         <div class="col-md-9">
                                             <textarea class="form-control" name="keterangan" rows="3" placeholder="Masukkan Keterangan"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material row">
+                                        <label class="col-md-3 col-form-label">Alamat </label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" name="alamat" rows="3" placeholder="Masukkan Alamat"></textarea>
                                         </div>
                                     </div>
                                     <?php foreach ($criterias as $key => $value) { ?>

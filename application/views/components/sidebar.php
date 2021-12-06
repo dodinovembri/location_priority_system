@@ -2,40 +2,7 @@
     <div>
         <div>
             <ul class="site-menu" data-plugin="menu">
-                <?php if ($this->session->userdata('role_id') == 0) { ?>
-                    <li class="site-menu-category">Main</li>
-                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "home")  echo "active"; ?>">
-                        <a href="<?php echo base_url('home') ?>">
-                            <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
-                            <span class="site-menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "alternative")  echo "active"; ?>">
-                        <a href="<?php echo base_url('alternative') ?>">
-                            <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
-                            <span class="site-menu-title">Alternatif</span>
-                        </a>
-                    </li>
-                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "ranking")  echo "active"; ?>">
-                        <a href="<?php echo base_url('ranking') ?>">
-                            <i class="site-menu-icon md-google-pages" aria-hidden="true"></i>
-                            <span class="site-menu-title">Ranking</span>
-                        </a>
-                    </li>
-                    <li class="site-menu-category">Master</li>
-                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "criteria" || $this->uri->segment(1) == "criterion_values" || $this->uri->segment(1) == "criterion_value") echo "active"; ?>">
-                        <a href="<?php echo base_url('criteria') ?>">
-                            <i class="site-menu-icon md-border-all" aria-hidden="true"></i>
-                            <span class="site-menu-title">Kelola Kriteria</span>
-                        </a>
-                    </li>
-                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "user")  echo "active"; ?>">
-                        <a href="<?php echo base_url('user') ?>">
-                            <i class="site-menu-icon md-border-all" aria-hidden="true"></i>
-                            <span class="site-menu-title">Kelola User</span>
-                        </a>
-                    </li>
-                <?php } elseif ($this->session->userdata('role_id') == 1) { ?>
+                <?php if ($this->session->userdata('role_id') == 1) { ?>
                     <li class="site-menu-category">Main</li>
                     <li class="site-menu-item <?php if ($this->uri->segment(1) == "home")  echo "active"; ?>">
                         <a href="<?php echo base_url('home') ?>">
@@ -93,6 +60,12 @@
                         <a href="<?php echo base_url('criteria') ?>">
                             <i class="site-menu-icon md-border-all" aria-hidden="true"></i>
                             <span class="site-menu-title">Data Kriteria</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "user")  echo "active"; ?>">
+                        <a href="<?php echo base_url('user') ?>">
+                            <i class="site-menu-icon md-border-all" aria-hidden="true"></i>
+                            <span class="site-menu-title">Kelola Data User</span>
                         </a>
                     </li>
                     <li class="site-menu-category">Laporan</li>

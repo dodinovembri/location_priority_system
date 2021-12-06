@@ -44,7 +44,6 @@
                                         <div class="col-md-9">
                                             <select class="form-control" name="role_id" id="" required>
                                                 <option value="<?php echo $user->role_id; ?>"><?php echo check_role($user->role_id) ?></option>
-                                                <option value="0">Administrator</option>
                                                 <option value="1">Kepala Seksi</option>
                                                 <option value="2">Staff Dinas Kesehatan</option>
                                                 <option value="3">Petugas Puskesmas</option>

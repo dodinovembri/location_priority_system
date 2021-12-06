@@ -44,14 +44,20 @@ class AlternativeController extends CI_Controller {
     {
         $kode_alternatif = $this->input->post('kode_alternatif');
         $nama_alternatif = $this->input->post('nama_alternatif');
+        $email = $this->input->post('email');
+        $no_telepon = $this->input->post('no_telepon');
         $keterangan = $this->input->post('keterangan');
+        $alamat = $this->input->post('alamat');
         $criteria_alternative = $this->input->post('criteria_alternative');
         $criteria_id = $this->input->post('criteria_id');
 
         $data = array(
             'kode_alternatif' => $kode_alternatif,
             'nama_alternatif' => $nama_alternatif,
-            'keterangan' => $keterangan
+            'keterangan' => $keterangan,
+            'alamat' => $alamat,
+            'no_telepon' => $no_telepon,
+            'email' => $email
         );
 
         $this->AlternativeModel->insert($data);

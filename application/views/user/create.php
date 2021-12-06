@@ -43,7 +43,6 @@
                                         <div class="col-md-9">
                                             <select class="form-control" name="role_id" id="" required>
                                                 <option value="">Select</option>
-                                                <option value="0">Administrator</option>
                                                 <option value="1">Kepala Seksi</option>
                                                 <option value="2">Staff Dinas Kesehatan</option>
                                                 <option value="3">Petugas Puskesmas</option>

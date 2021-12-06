@@ -18,4 +18,3 @@ CREATE TABLE users (
 | 1 | Kepala Seksi |
 | 2 | Staff Dinas Kesehatan |
 | 3 | Petugas Puskesmas |
-| 4 | Petugas Each Puskesmas |
