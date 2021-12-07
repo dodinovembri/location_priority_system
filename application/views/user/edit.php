@@ -28,7 +28,7 @@
                                     <div class="form-group form-material row">
                                         <label class="col-md-3 col-form-label">Email </label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" value="<?php echo $user->email; ?>" placeholder="Masukkan Email" autocomplete="off" required />
+                                            <input type="text" class="form-control" name="email" value="<?php echo $user->email; ?>" placeholder="Masukkan Email" autocomplete="off" readonly />
                                         </div>
                                     </div>
                                     <div class="form-group form-material row">
@@ -44,9 +44,12 @@
                                         <div class="col-md-9">
                                             <select class="form-control" name="role_id" id="" required>
                                                 <option value="<?php echo $user->role_id; ?>"><?php echo check_role($user->role_id) ?></option>
-                                                <option value="1">Kepala Seksi</option>
-                                                <option value="2">Staff Dinas Kesehatan</option>
-                                                <option value="3">Petugas Puskesmas</option>
+                                                <?php if ($user->role_id == 3) { ?>
+                                                    <option value="3">Petugas Puskesmas</option>
+                                                <?php }else{  ?>
+                                                    <option value="1">Kepala Seksi</option>
+                                                    <option value="2">Staff Dinas Kesehatan</option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                     </div>

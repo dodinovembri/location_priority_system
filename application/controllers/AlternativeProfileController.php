@@ -48,12 +48,15 @@ class AlternativeProfileController extends CI_Controller {
         $keterangan = $this->input->post('keterangan');
         $no_telepon = $this->input->post('no_telepon');
         $email = $this->input->post('email');
+        $alamat = $this->input->post('alamat');
+
 
      
         $data = array(
             'kode_alternatif' => $kode_alternatif,
             'nama_alternatif' => $nama_alternatif,
             'keterangan' => $keterangan,
+            'alamat' => $alamat,
             'no_telepon' => $no_telepon,
             'email' => $email
         );
