@@ -55,6 +55,15 @@
                                             <textarea class="form-control" name="alamat" rows="3" placeholder="Masukkan Alamat"><?php echo $alternative->alamat ?></textarea>
                                         </div>
                                     </div>
+                                    <?php foreach ($criteria_alternative as $key => $value) { ?>
+                                        <div class="form-group form-material row">
+                                            <label class="col-md-3 col-form-label"><?php echo $value->nama_kriteria; ?> </label>
+                                            <div class="col-md-9">
+                                                <input type="hidden" name="criteria_id[]" value="<?php echo $value->id_kriteria; ?>">
+                                                <input type="text" class="form-control" name="criteria_alternative[]" value="<?php echo $value->nilai_alternatif; ?>" placeholder="Masukkan nilai" autocomplete="off" required />
+                                            </div>
+                                        </div>
+                                    <?php } ?>
                                     <br><br>
                                     <div class="form-group form-material row" >
                                     <label class="col-md-3 col-form-label"></label>

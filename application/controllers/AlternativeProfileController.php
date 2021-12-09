@@ -6,7 +6,7 @@ class AlternativeProfileController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['AlternativeModel']);
+        $this->load->model(['AlternativeModel', 'AlternativeValueModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -16,7 +16,10 @@ class AlternativeProfileController extends CI_Controller {
 	public function index()
 	{
         $email = $this->session->userdata('email');
-        $data['alternative'] = $this->AlternativeModel->getByEmail($email)->row();
+        $alternative = $this->AlternativeModel->getByEmail($email)->row();
+        $data['alternative'] = $alternative;
+        $data['criteria_alternative'] = $this->AlternativeModel->getWithJoinById($alternative->id)->result();
+
 
         $this->load->view('templates/header');
 		$this->load->view('alternative_profile/index', $data);
@@ -25,20 +28,12 @@ class AlternativeProfileController extends CI_Controller {
 
     public function show($id)
     {
-        $data['alternative'] = $this->AlternativeModel->getById($id)->row();
-
-        $this->load->view('templates/header');
-        $this->load->view('alternative_profile/show', $data);
-        $this->load->view('templates/footer');
+        // 
     }
 
     public function edit($id)
     {
-        $data['alternative'] = $this->AlternativeModel->getById($id)->row();
-
-        $this->load->view('templates/header');
-        $this->load->view('alternative_profile/edit', $data);
-        $this->load->view('templates/footer');
+        // 
     }
 
     public function update($id)
@@ -49,7 +44,8 @@ class AlternativeProfileController extends CI_Controller {
         $no_telepon = $this->input->post('no_telepon');
         $email = $this->input->post('email');
         $alamat = $this->input->post('alamat');
-
+        $criteria_alternative = $this->input->post('criteria_alternative');
+        $criteria_id = $this->input->post('criteria_id');
 
      
         $data = array(
@@ -62,6 +58,20 @@ class AlternativeProfileController extends CI_Controller {
         );
 
         $this->AlternativeModel->update($data, $id);
+        $this->AlternativeValueModel->destroy_by_alternative($id);
+
+        foreach ($criteria_alternative as $key => $value) {
+            $criteria = $this->AlternativeModel->findCriteria($value,  $criteria_id[$key])->row();
+            
+            $data2 = array(
+                'id_alternatif' => $id,
+                'id_kriteria' => $criteria_id[$key],
+                'id_nilai_kriteria' => $criteria->id,
+                'nilai' => $value
+            );
+
+            $this->AlternativeValueModel->insert($data2);
+        }
 
         $this->session->set_flashdata('success', "Data puskesmas berhasil diubah!");
         return redirect(base_url('alternative_profile'));
