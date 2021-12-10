@@ -7,7 +7,7 @@ class RankingController extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('function');
-        $this->load->model(['RankingModel']);
+        $this->load->model(['RankingModel', 'AlternativeModel', 'CriteriaModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -319,7 +319,9 @@ class RankingController extends CI_Controller {
             }
         }
 
-        $data['alternatives'] = $this->RankingModel->getAlternative()->result();
+        // $data['alternatives'] = $this->RankingModel->getAlternative()->result();
+        $data['alternatives'] = $this->AlternativeModel->get()->result();
+        $data['criterias'] = $this->CriteriaModel->get()->result();
         $data['alternative_values'] = $this->RankingModel->getAlternativeValueList()->result();
         $data['devider'] = $devider;
         $data['alternative_values_normalized'] = $alternative_value;

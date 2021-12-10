@@ -17,14 +17,14 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <h3>Data Laporan</h3>
+                <h3>Data Perhitungan</h3>
                 <table id="example1" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Ranking</th>
-                            <th>Kode Alternatif</th>
-                            <th>Nama Alternatif</th>
-                            <th>Keterangan</th>
+                            <th>Nama Puskesmas</th>
+                            <?php foreach ($criterias as $key => $value) { ?>
+                                <th><?php echo $value->kode_kriteria; ?></th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,14 +32,16 @@
                         $no = 0;
                         foreach ($alternatives as $key => $value) {
                             $no++;
+                            $id_alternatif = $value->id;
+                            $sql = "SELECT * FROM nilai_alternatif WHERE `id_alternatif` = $id_alternatif";
+                            $query = $this->db->query($sql);
                         ?>
                             <tr>
-                                <td><?php echo $no; ?></td>
-                                <td><?php echo $value->kode_alternatif; ?></td>
                                 <td><?php echo $value->nama_alternatif; ?></td>
-                                <td><?php echo $value->keterangan; ?></td>
+                                <?php foreach ($query->result() as $key2 => $value2) { ?>
+                                    <td><?php echo $value2->nilai; ?></td>
+                                <?php } ?>
                             </tr>
-                            <!-- End Modal -->
                         <?php } ?>
                     </tbody>
                 </table>
