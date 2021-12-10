@@ -6,7 +6,7 @@ class AlternativeProfileController extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['AlternativeModel', 'AlternativeValueModel']);
+        $this->load->model(['AlternativeModel', 'AlternativeValueModel', 'CriteriaModel']);
 
         if ($this->session->userdata('logged_in') != 1) {
             return redirect(base_url('login'));
@@ -19,6 +19,7 @@ class AlternativeProfileController extends CI_Controller {
         $alternative = $this->AlternativeModel->getByEmail($email)->row();
         $data['alternative'] = $alternative;
         $data['criteria_alternative'] = $this->AlternativeModel->getWithJoinById($alternative->id)->result();
+        $data['criterias'] = $this->CriteriaModel->get()->result();
 
 
         $this->load->view('templates/header');

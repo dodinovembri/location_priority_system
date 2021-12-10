@@ -60,7 +60,7 @@
                                             <label class="col-md-3 col-form-label"><?php echo $value->nama_kriteria; ?> </label>
                                             <div class="col-md-9">
                                                 <input type="hidden" name="criteria_id[]" value="<?php echo $value->id; ?>">
-                                                <input type="text" class="form-control" name="criteria_alternative[]" placeholder="Masukkan nilai" autocomplete="off" required />
+                                                <input type="text" class="form-control" name="criteria_alternative[]" placeholder="Masukkan nilai" autocomplete="off" />
                                             </div>
                                         </div>
                                     <?php } ?>

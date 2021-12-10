@@ -65,7 +65,7 @@ class RankingController extends CI_Controller {
         /**
          * 4. Find ideal solution (A+) and (A-)
          */
-        $total_alternative = $this->RankingModel->countAlternative();
+        $total_alternative = $total_weigth;
         $k = 0;
         for ($i = 0; $i < $total_weigth; $i++) {
             for ($j = 0; $j < $total_alternative; $j++) {
@@ -217,11 +217,11 @@ class RankingController extends CI_Controller {
                 $j = 0;
             }
         }
-
+        
         /**
          * 4. Find ideal solution (A+) and (A-)
          */
-        $total_alternative = $this->RankingModel->countAlternative();
+        $total_alternative = $total_weigth;
         $k = 0;
         for ($i = 0; $i < $total_weigth; $i++) {
             for ($j = 0; $j < $total_alternative; $j++) {

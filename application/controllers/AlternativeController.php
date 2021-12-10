@@ -63,17 +63,19 @@ class AlternativeController extends CI_Controller {
         $this->AlternativeModel->insert($data);
         $insert_id = $this->db->insert_id();
         
-        foreach ($criteria_alternative as $key => $value) {
-            $criteria = $this->AlternativeModel->findCriteria($value,  $criteria_id[$key])->row();
-            
-            $data2 = array(
-                'id_alternatif' => $insert_id,
-                'id_kriteria' => $criteria_id[$key],
-                'id_nilai_kriteria' => $criteria->id,
-                'nilai' => $value
-            );
-
-            $this->AlternativeValueModel->insert($data2);
+        if ($criteria_alternative[0] != "") {            
+            foreach ($criteria_alternative as $key => $value) {
+                $criteria = $this->AlternativeModel->findCriteria($value,  $criteria_id[$key])->row();
+                
+                $data2 = array(
+                    'id_alternatif' => $insert_id,
+                    'id_kriteria' => $criteria_id[$key],
+                    'id_nilai_kriteria' => $criteria->id,
+                    'nilai' => $value
+                );
+    
+                $this->AlternativeValueModel->insert($data2);
+            }
         }
 
         $data_user = array(
