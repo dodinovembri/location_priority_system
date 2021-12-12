@@ -50,4 +50,8 @@
         $('#example10').DataTable({
         });
     });
+    $(document).ready(function() {
+        $('#example11').DataTable({
+        });
+    });
 </script>

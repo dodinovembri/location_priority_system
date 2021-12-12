@@ -322,7 +322,8 @@ class RankingController extends CI_Controller {
         // $data['alternatives'] = $this->RankingModel->getAlternative()->result();
         $data['alternatives'] = $this->AlternativeModel->get()->result();
         $data['criterias'] = $this->CriteriaModel->get()->result();
-        $data['alternative_values'] = $this->RankingModel->getAlternativeValueList()->result();
+        // $data['alternative_values'] = $this->RankingModel->getAlternativeValueList()->result();
+        $data['alternative_values'] = $alternative_values;
         $data['devider'] = $devider;
         $data['alternative_values_normalized'] = $alternative_value;
         $data['weights'] = $weight;

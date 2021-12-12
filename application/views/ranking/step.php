@@ -5,10 +5,10 @@
 <!-- Page -->
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title">Ranking</h1>
+        <h1 class="page-title">Perhitungan Data</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url('home') ?>">Home</a></li>
-            <li class="breadcrumb-item active">Ranking</li>
+            <li class="breadcrumb-item active">Perhitungan Data</li>
         </ol>
     </div>
 
@@ -17,7 +17,7 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <h3>Data Perhitungan</h3>
+                <h3>Data Laporan Kriteria</h3>
                 <table id="example1" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -56,29 +56,36 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <h3>Data Konversi</h3>
+                <h3>Data Nilai Konversi Kriteria</h3>
                 <table id="example2" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>ID Alternatif</th>
-                            <th>ID Kriteria</th>
-                            <th>ID Nilai Kriteria</th>
-                            <th>Nilai</th>
+                            <th>Nama Puskesmas</th>
+                            <?php foreach ($criterias as $key => $value) { ?>
+                                <th><?php echo $value->kode_kriteria; ?></th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
+                    <?php
                         $no = 0;
-                        foreach ($alternative_values as $key => $value) {
+                        foreach ($alternatives as $key => $value) {
                             $no++;
+                            $id_alternatif = $value->id;
+                            $data = [];
+                            foreach ($alternative_values as $key2 => $value2) {
+                                if ($id_alternatif == $value2->id_alternatif) {
+                                    array_push($data, $value2->nilai);
+                                }
+                            }
+                            
                         ?>
                             <tr>
-                                <td><?php echo $value->id_alternatif; ?></td>
-                                <td><?php echo $value->id_kriteria; ?></td>
-                                <td><?php echo $value->id_nilai_kriteria; ?></td>
-                                <td><?php echo $value->nilai; ?></td>
+                                <td><?php echo $value->nama_alternatif; ?></td>
+                                <?php foreach ($data as $key3 => $value3) { ?>
+                                    <td><?php echo $value3; ?></td>
+                                <?php } ?>
                             </tr>
-                            <!-- End Modal -->
                         <?php } ?>
                     </tbody>
                 </table>
@@ -93,28 +100,27 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <h3>Pembagi</h3>
+                <h3>Table Pembagi</h3>
+                <div style="overflow-x:auto;">
                 <table id="example3" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>ID Kriteria</th>
-                            <th>Nilai</th>
+                            <th>Cj</th>
+                            <?php foreach ($criterias as $key => $value) { ?>
+                                <th><?php echo $value->kode_kriteria; ?></th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        $no = 0;
-                        foreach ($devider as $key => $value) {
-                            $no++;
-                        ?>
                             <tr>
-                                <td><?php echo $value['id_kriteria']; ?></td>
-                                <td><?php echo $value['nilai']; ?></td>
+                                <td>Hasil Kuadrat</td>
+                                <?php foreach ($devider as $key3 => $value3) { ?>
+                                    <td><?php echo $value3['nilai']; ?></td>
+                                <?php } ?>
                             </tr>
-                            <!-- End Modal -->
-                        <?php } ?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- End Panel Basic -->
@@ -127,31 +133,38 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <h3>Matrik Ternormalisasi</h3>
+                <h3>Hasil Matriks Keputusan Ternormalisasi</h3>
                 <table id="example4" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Kode Alternatif</th>
-                            <th>Nama Alternatif</th>
-                            <th>Preferensi</th>
+                            <th>Nama Puskesmas</th>
+                            <?php foreach ($criterias as $key => $value) { ?>
+                                <th><?php echo $value->kode_kriteria; ?></th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
+                    <?php
                         $no = 0;
-                        foreach ($alternative_values_normalized as $key => $value) {
+                        foreach ($alternatives as $key => $value) {
                             $no++;
-                            $id_alternatif = $value['id_alternatif'];
-                            $sql = "SELECT * FROM alternatif WHERE id = $id_alternatif";
-                            $query = $this->db->query($sql);
+                            $id_alternatif = $value->id;
+                            $data = [];
+                            foreach ($alternative_values_normalized as $key2 => $value2) {
+                                if ($id_alternatif == $value2['id_alternatif']) {
+                                    array_push($data, $value2['hasil_bagi']);
+                                }
+                            }
+                            
                         ?>
                             <tr>
-                                <td><?php echo $query->row()->kode_alternatif; ?></td>
-                                <td><?php echo $query->row()->nama_alternatif; ?></td>
-                                <td><?php echo $value['hasil_bagi']; ?></td>
+                                <td><?php echo $value->nama_alternatif; ?></td>
+                                <?php foreach ($data as $key3 => $value3) { ?>
+                                    <td><?php echo $value3; ?></td>
+                                <?php } ?>
                             </tr>
-                            <!-- End Modal -->
                         <?php } ?>
+
                     </tbody>
                 </table>
             </div>
@@ -165,30 +178,38 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <h3>Bobot</h3>
-                <table id="example5" class="display" style="width:100%">
+                <h3>Matriks Keputusan Ternormalisasi Terbobot</h3>
+                <table id="example11" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Ranking</th>
-                            <th>Kode Kriteria</th>
-                            <th>Nama Kriteria</th>
-                            <th>Bobot</th>
+                            <th>Nama Puskesmas</th>
+                            <?php foreach ($criterias as $key => $value) { ?>
+                                <th><?php echo $value->kode_kriteria; ?></th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
+                    <?php
                         $no = 0;
-                        foreach ($weights as $key => $value) {
+                        foreach ($alternatives as $key => $value) {
                             $no++;
+                            $id_alternatif = $value->id;
+                            $data = [];
+                            foreach ($alternative_after_multiple as $key2 => $value2) {
+                                if ($id_alternatif == $value2['id_alternatif']) {
+                                    array_push($data, $value2['hasil_kali']);
+                                }
+                            }
+                            
                         ?>
                             <tr>
-                                <td><?php echo $no; ?></td>
-                                <td><?php echo $value->kode_kriteria; ?></td>
-                                <td><?php echo $value->nama_kriteria; ?></td>
-                                <td><?php echo $value->bobot; ?></td>
+                                <td><?php echo $value->nama_alternatif; ?></td>
+                                <?php foreach ($data as $key3 => $value3) { ?>
+                                    <td><?php echo $value3; ?></td>
+                                <?php } ?>
                             </tr>
-                            <!-- End Modal -->
                         <?php } ?>
+
                     </tbody>
                 </table>
             </div>
@@ -202,106 +223,39 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <h3>Bobot Ternormalisasi</h3>
-                <table id="example6" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Ranking</th>
-                            <th>Kode Alternatif</th>
-                            <th>Nama Alternatif</th>
-                            <th>Preferensi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $no = 0;
-                        foreach ($alternative_after_multiple as $key => $value) {
-                            $no++;
-                            $id_alternatif = $value['id_alternatif'];
-                            $sql = "SELECT * FROM alternatif WHERE id = $id_alternatif";
-                            $query = $this->db->query($sql);
-                        ?>
-                            <tr>
-                                <td><?php echo $no; ?></td>
-                                <td><?php echo $query->row()->kode_alternatif; ?></td>
-                                <td><?php echo $query->row()->nama_alternatif; ?></td>
-                                <td><?php echo $value['hasil_kali']; ?></td>
-                            </tr>
-                            <!-- End Modal -->
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- End Panel Basic -->
-
-    </div>
-
-    <div class="page-content">
-        <!-- Panel Basic -->
-        <div class="panel">
-            <div class="panel-body">
-                <?php $this->load->view('components/flash') ?>
-                <h3>A+</h3>
+                <h3>Matriks Solusi Ideal Positif dan Matriks Solusi Ideal Negatif </h3>
+                <div style="overflow-x:auto;">
                 <table id="example7" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>A Positif</th>
+                            <th>Solusi Ideal</th>
+                            <?php foreach ($criterias as $key => $value) { ?>
+                                <th><?php echo $value->kode_kriteria; ?></th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        $no = 0;
-                        foreach ($a_positive as $key => $value) {
-                            $no++;
-                        ?>
                             <tr>
-                                <td><?php echo $no; ?></td>
-                                <td><?php echo $value; ?></td>
+                                <td>Solusi Ideal Positif (A+)</td>
+                                <?php foreach ($a_positive as $key3 => $value3) { ?>
+                                    <td><?php echo $value3; ?></td>
+                                <?php } ?>
                             </tr>
-                            <!-- End Modal -->
-                        <?php } ?>
+                            <tr>
+                                <td>Solusi Ideal Negatif (A-)</td>
+                                <?php foreach ($a_negative as $key3 => $value3) { ?>
+                                    <td><?php echo $value3; ?></td>
+                                <?php } ?>
+                            </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- End Panel Basic -->
 
     </div>
 
-    <div class="page-content">
-        <!-- Panel Basic -->
-        <div class="panel">
-            <div class="panel-body">
-                <?php $this->load->view('components/flash') ?>
-                <h3>A-</h3>
-                <table id="example8" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>A Negatif</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $no = 0;
-                        foreach ($a_negative as $key => $value) {
-                            $no++;
-                        ?>
-                            <tr>
-                                <td><?php echo $no; ?></td>
-                                <td><?php echo $value; ?></td>
-                            </tr>
-                            <!-- End Modal -->
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- End Panel Basic -->
-
-    </div>
     <div class="page-content">
         <!-- Panel Basic -->
         <div class="panel">
@@ -372,7 +326,7 @@
                                 <td><?php echo $no; ?></td>
                                 <td><?php echo $query->row()->kode_alternatif; ?></td>
                                 <td><?php echo $query->row()->nama_alternatif; ?></td>
-                                <td><?php echo $value['preferensi']; ?></td>
+                                <td><?php echo round($value['preferensi'], 4); ?></td>
                             </tr>
                             <!-- End Modal -->
                         <?php } ?>
