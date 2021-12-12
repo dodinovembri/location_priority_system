@@ -39,7 +39,7 @@
                                 <td><?php echo $no; ?></td>
                                 <td><?php echo $query->row()->kode_alternatif; ?></td>
                                 <td><?php echo $query->row()->nama_alternatif; ?></td>
-                                <td><?php echo $value['preferensi']; ?></td>
+                                <td><?php echo round($value['preferensi'], 4); ?></td>
                             </tr>
                             <!-- End Modal -->
                         <?php } ?>

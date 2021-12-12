@@ -18,6 +18,7 @@
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
                 <h3>Data Laporan Kriteria</h3>
+                <div style="overflow-x:auto;">
                 <table id="example1" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -45,6 +46,7 @@
                         <?php } ?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- End Panel Basic -->
@@ -57,6 +59,7 @@
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
                 <h3>Data Nilai Konversi Kriteria</h3>
+                <div style="overflow-x:auto;">
                 <table id="example2" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -89,6 +92,7 @@
                         <?php } ?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- End Panel Basic -->
@@ -134,6 +138,7 @@
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
                 <h3>Hasil Matriks Keputusan Ternormalisasi</h3>
+                <div style="overflow-x:auto;">
                 <table id="example4" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -167,6 +172,7 @@
 
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- End Panel Basic -->
@@ -179,6 +185,7 @@
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
                 <h3>Matriks Keputusan Ternormalisasi Terbobot</h3>
+                <div style="overflow-x:auto;">
                 <table id="example11" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -212,6 +219,7 @@
 
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- End Panel Basic -->
@@ -261,7 +269,8 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <h3>D Solution</h3>
+                <h3>Jarak Alternatif Solusi Ideal Positif dan Solusi Ideal Negatif </h3>
+                <div style="overflow-x:auto;">
                 <table id="example9" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -292,6 +301,7 @@
                         <?php } ?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- End Panel Basic -->
@@ -303,7 +313,8 @@
         <div class="panel">
             <div class="panel-body">
                 <?php $this->load->view('components/flash') ?>
-                <h3>Hasil Preferensi</h3>
+                <h3>Hasil Perhitungan Nilai Preferensi </h3>
+                <div style="overflow-x:auto;">
                 <table id="example10" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -332,6 +343,7 @@
                         <?php } ?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- End Panel Basic -->
