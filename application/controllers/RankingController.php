@@ -66,11 +66,12 @@ class RankingController extends CI_Controller {
          * 4. Find ideal solution (A+) and (A-)
          */
         $total_alternative = $total_weigth;
+        $total_count_alternative = $this->RankingModel->countAlternative();
         $k = 0;
         for ($i = 0; $i < $total_weigth; $i++) {
-            for ($j = 0; $j < $total_alternative; $j++) {
+            for ($j = 0; $j < $total_count_alternative; $j++) {
                 $alternative[$i][] = $alternative_after_multiple[0 + $k]['hasil_kali'];
-                $k = $k + $total_alternative - 1;
+                $k = $k + $total_alternative;
             }
             $k = $i + 1;
         }
@@ -124,7 +125,7 @@ class RankingController extends CI_Controller {
                 }
             }
             $l++;
-            if ($l == ($total_alternative - 1)) {
+            if ($l == ($total_alternative)) {
                 $l = 0;
             }
         }
@@ -206,6 +207,7 @@ class RankingController extends CI_Controller {
          */
         $alternative_after_multiple = [];
         $weight = $this->RankingModel->getCriteriaAll()->result();
+
         $total_weigth = count($weight);
         $j = 0;
         foreach ($alternative_value as $key => $value) {
@@ -217,19 +219,21 @@ class RankingController extends CI_Controller {
                 $j = 0;
             }
         }
-        
         /**
          * 4. Find ideal solution (A+) and (A-)
          */
         $total_alternative = $total_weigth;
+        $total_count_alternative = $this->RankingModel->countAlternative();
+
         $k = 0;
         for ($i = 0; $i < $total_weigth; $i++) {
-            for ($j = 0; $j < $total_alternative; $j++) {
+            for ($j = 0; $j < $total_count_alternative; $j++) {
                 $alternative[$i][] = $alternative_after_multiple[0 + $k]['hasil_kali'];
-                $k = $k + $total_alternative - 1;
+                $k = $k + $total_alternative;
             }
             $k = $i + 1;
         }
+
 
         foreach ($weight as $key => $value) {
             // A+
@@ -280,7 +284,7 @@ class RankingController extends CI_Controller {
                 }
             }
             $l++;
-            if ($l == ($total_alternative - 1)) {
+            if ($l == ($total_alternative)) {
                 $l = 0;
             }
         }
@@ -298,12 +302,13 @@ class RankingController extends CI_Controller {
             $alternative_id = $value['id_alternatif'];
             $d_negative = $value['d_negatif'];
             $d_positive = $value['d_positif'];
-
+            
             $final_result = $d_negative / ($d_negative + $d_positive);
             $final_push = array('id_alternatif' => $alternative_id, 'preferensi' => $final_result);
             array_push($final_results, $final_push);
         }
-
+        
+        $preferences_to_show = $final_results;
         /**
          * 5. Determine ranking
          */
@@ -321,6 +326,8 @@ class RankingController extends CI_Controller {
 
         // $data['alternatives'] = $this->RankingModel->getAlternative()->result();
         $data['alternatives'] = $this->AlternativeModel->get()->result();
+        // print_r(json_encode($data['alternatives']));
+        // die;
         $data['criterias'] = $this->CriteriaModel->get()->result();
         // $data['alternative_values'] = $this->RankingModel->getAlternativeValueList()->result();
         $data['alternative_values'] = $alternative_values;
@@ -331,7 +338,7 @@ class RankingController extends CI_Controller {
         $data['a_positive'] = $a_positive;
         $data['a_negative'] = $a_negative;
         $data['d_solution'] = $d_solution;
-        $data['final_results'] = $final_results;
+        $data['final_results'] = $preferences_to_show;
 
         $this->load->view('templates/header');
 		$this->load->view('ranking/step', $data);
