@@ -274,7 +274,6 @@
                 <table id="example9" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Ranking</th>
                             <th>Kode Alternatif</th>
                             <th>Nama Alternatif</th>
                             <th>D Positif</th>
@@ -291,7 +290,6 @@
                             $query = $this->db->query($sql);
                         ?>
                             <tr>
-                                <td><?php echo $no; ?></td>
                                 <td><?php echo $query->row()->kode_alternatif; ?></td>
                                 <td><?php echo $query->row()->nama_alternatif; ?></td>
                                 <td><?php echo $value['d_positif']; ?></td>
@@ -318,10 +316,10 @@
                 <table id="example10" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Ranking</th>
                             <th>Kode Alternatif</th>
                             <th>Nama Alternatif</th>
                             <th>Preferensi</th>
+                            <th>Ranking</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -332,12 +330,18 @@
                             $id_alternatif = $value['id_alternatif'];
                             $sql = "SELECT * FROM alternatif WHERE id = $id_alternatif";
                             $query = $this->db->query($sql);
+
+                            foreach ($final_resultss as $key => $value) {
+                                if ($id_alternatif == $value['id_alternatif']) {
+                                    $ranking = $key + 1;
+                                }
+                            }
                         ?>
                             <tr>
-                                <td><?php echo $no; ?></td>
                                 <td><?php echo $query->row()->kode_alternatif; ?></td>
                                 <td><?php echo $query->row()->nama_alternatif; ?></td>
                                 <td><?php echo round($value['preferensi'], 4); ?></td>
+                                <td><?php echo $ranking; ?></td>
                             </tr>
                             <!-- End Modal -->
                         <?php } ?>

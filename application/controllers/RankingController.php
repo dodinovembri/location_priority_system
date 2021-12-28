@@ -339,6 +339,7 @@ class RankingController extends CI_Controller {
         $data['a_negative'] = $a_negative;
         $data['d_solution'] = $d_solution;
         $data['final_results'] = $preferences_to_show;
+        $data['final_resultss'] = $final_results;
 
         $this->load->view('templates/header');
 		$this->load->view('ranking/step', $data);
