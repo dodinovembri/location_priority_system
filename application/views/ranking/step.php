@@ -325,9 +325,9 @@
                     <tbody>
                         <?php
                         $no = 0;
-                        foreach ($final_results as $key => $value) {
+                        foreach ($final_results as $key => $value1) {
                             $no++;
-                            $id_alternatif = $value['id_alternatif'];
+                            $id_alternatif = $value1['id_alternatif'];
                             $sql = "SELECT * FROM alternatif WHERE id = $id_alternatif";
                             $query = $this->db->query($sql);
 
@@ -340,7 +340,7 @@
                             <tr>
                                 <td><?php echo $query->row()->kode_alternatif; ?></td>
                                 <td><?php echo $query->row()->nama_alternatif; ?></td>
-                                <td><?php echo round($value['preferensi'], 4); ?></td>
+                                <td><?php echo round($value1['preferensi'], 4); ?></td>
                                 <td><?php echo $ranking; ?></td>
                             </tr>
                             <!-- End Modal -->
