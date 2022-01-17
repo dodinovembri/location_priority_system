@@ -48,8 +48,6 @@ class AlternativeController extends CI_Controller {
         $no_telepon = $this->input->post('no_telepon');
         $keterangan = $this->input->post('keterangan');
         $alamat = $this->input->post('alamat');
-        $criteria_alternative = $this->input->post('criteria_alternative');
-        $criteria_id = $this->input->post('criteria_id');
 
         $data = array(
             'kode_alternatif' => $kode_alternatif,
@@ -61,22 +59,6 @@ class AlternativeController extends CI_Controller {
         );
 
         $this->AlternativeModel->insert($data);
-        $insert_id = $this->db->insert_id();
-        
-        if ($criteria_alternative[0] != "") {            
-            foreach ($criteria_alternative as $key => $value) {
-                $criteria = $this->AlternativeModel->findCriteria($value,  $criteria_id[$key])->row();
-                
-                $data2 = array(
-                    'id_alternatif' => $insert_id,
-                    'id_kriteria' => $criteria_id[$key],
-                    'id_nilai_kriteria' => $criteria->id,
-                    'nilai' => $value
-                );
-    
-                $this->AlternativeValueModel->insert($data2);
-            }
-        }
 
         $data_user = array(
             'name' => $nama_alternatif, 
@@ -118,8 +100,6 @@ class AlternativeController extends CI_Controller {
         $no_telepon = $this->input->post('no_telepon');
         $keterangan = $this->input->post('keterangan');
         $alamat = $this->input->post('alamat');
-        $criteria_alternative = $this->input->post('criteria_alternative');
-        $criteria_id = $this->input->post('criteria_id');
 
      
         $data = array(
@@ -132,21 +112,6 @@ class AlternativeController extends CI_Controller {
         );
 
         $this->AlternativeModel->update($data, $id);
-        $this->AlternativeValueModel->destroy_by_alternative($id);
-        
-
-        foreach ($criteria_alternative as $key => $value) {
-            $criteria = $this->AlternativeModel->findCriteria($value,  $criteria_id[$key])->row();
-            
-            $data2 = array(
-                'id_alternatif' => $id,
-                'id_kriteria' => $criteria_id[$key],
-                'id_nilai_kriteria' => $criteria->id,
-                'nilai' => $value
-            );
-
-            $this->AlternativeValueModel->insert($data2);
-        }
 
         $this->session->set_flashdata('success', "Alternatif berhasil di ubah!");
         return redirect(base_url('alternative'));

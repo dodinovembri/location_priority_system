@@ -129,6 +129,8 @@ $route['alternative_profile/edit/(:any)'] = 'AlternativeProfileController/edit/$
 $route['alternative_profile/show/(:any)'] = 'AlternativeProfileController/show/$1';
 $route['alternative_profile/update/(:any)'] = 'AlternativeProfileController/update/$1';
 $route['alternative_profile/destroy/(:any)'] = 'AlternativeProfileController/destroy/$1';
+$route['alternative_profile/value'] = 'AlternativeProfileController/value';
+$route['alternative_profile/update_value/(:any)'] = 'AlternativeProfileController/update_value/$1';
 
 
 $route['alternative_value_report'] = 'AlternativeValueReportController';

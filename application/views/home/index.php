@@ -177,22 +177,36 @@
 					<!-- End Widget Linearea Four -->
 				</div>
 			<?php } elseif ($this->session->userdata('role_id') == 3) { ?>
-				<div class="col-xl-3 col-md-6">
+				<div class="col-xl-6 col-md-6">
 					<!-- Widget Linearea Four -->
 					<div class="card card-shadow" id="widgetLineareaFour">
-						<a href="<?php echo base_url('ranking') ?>">
+						<a href="<?php echo base_url('alternative_profile') ?>">
 							<div class="card-block p-20 pt-10">
 								<div class="clearfix">
 									<div class="grey-800 float-left py-10">
-										<i class="icon md-view-list grey-600 font-size-24 vertical-align-bottom mr-5"></i> Ranking
+										<i class="icon md-account grey-600 font-size-24 vertical-align-bottom mr-5"></i> Profile Puskesmas
 									</div>
-									<span class="float-right grey-700 font-size-30"></span>
 								</div>
-								<div class="ct-chart h-50"></div>
 							</div>
 						</a>
 					</div>
 					<!-- End Widget Linearea Four -->
+				</div>
+
+				<div class="col-xl-6 col-md-6">
+					<!-- Widget Linearea Two -->
+					<div class="card card-shadow" id="widgetLineareaTwo">
+						<a href="<?php echo base_url('alternative_profile/value') ?>">
+							<div class="card-block p-20 pt-10">
+								<div class="clearfix">
+									<div class="grey-800 float-left py-10">
+										<i class="icon md-view-list grey-600 font-size-24 vertical-align-bottom mr-5"></i> Nilai Puskesmas
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+					<!-- End Widget Linearea Two -->
 				</div>
 			<?php } ?>
 		</div>

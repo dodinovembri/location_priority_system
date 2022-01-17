@@ -43,7 +43,7 @@
     </script>
 </head>
 
-<body class="animsition page-login-v2 layout-full page-dark">
+<body class="animsition page-login-v2 layout-full" style="background-color: grey;">
 
     <!-- Page -->
     <div class="page" data-animsition-in="fade-in" data-animsition-out="fade-out">
@@ -53,7 +53,7 @@
                     <img class="brand-img" src="<?php echo base_url('assets/images/logo_dinkes.png') ?>" width="40px" alt="...">
                     <h2 class="brand-text font-size-20">DINAS KESEHATAN KOTA PALEMBANG</h2>
                 </div>
-                <p class="font-size-20">Sistem Pendukung Keputusan Penentuan Lokasi Prioritas Pembinaan Kesehatan & Sanitasi.</p>
+                <p class="font-size-20" style="color: white;">Sistem Pendukung Keputusan Penentuan Lokasi Prioritas Pembinaan Kesehatan & Sanitasi.</p>
             </div>
 
             <div class="page-login-main">

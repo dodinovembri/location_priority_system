@@ -55,23 +55,6 @@
                                             <textarea class="form-control" name="alamat" rows="3" placeholder="Masukkan Alamat"></textarea>
                                         </div>
                                     </div>
-                                    <?php foreach ($criterias as $key => $value) { ?>
-                                        <div class="form-group form-material row">
-                                            <label class="col-md-3 col-form-label"><?php echo $value->nama_kriteria; ?> </label>
-                                            <div class="col-md-9">
-                                                <input type="hidden" name="criteria_id[]" value="<?php echo $value->id; ?>">
-                                                <input type="text" class="form-control" name="criteria_alternative[]" placeholder="Masukkan nilai" autocomplete="off" />
-                                            </div>
-                                        </div>
-                                    <?php } ?>
-                                    <br><br>
-                                    <div class="form-group form-material row">
-                                        <label class="col-md-3 col-form-label"></label>
-                                        <div class="col-md-9">
-                                            <button type="submit" class="btn btn-primary">Simpan </button>
-                                            <a href="<?php echo base_url('alternative') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
                         </div>

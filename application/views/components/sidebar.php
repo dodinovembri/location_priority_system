@@ -83,12 +83,18 @@
                             <span class="site-menu-title">Dashboard</span>
                         </a>
                     </li>                    
-                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "alternative_profile")  echo "active"; ?>">
+                    <li class="site-menu-item <?php if ($this->uri->segment(1) == "alternative_profile" && $this->uri->segment(2) != "value")  echo "active"; ?>">
                         <a href="<?php echo base_url('alternative_profile') ?>">
                             <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
                             <span class="site-menu-title">Profile Puskesmas</span>
                         </a>
-                    </li>                   
+                    </li>    
+                    <li class="site-menu-item <?php if ($this->uri->segment(2) == "value")  echo "active"; ?>">
+                        <a href="<?php echo base_url('alternative_profile/value') ?>">
+                            <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
+                            <span class="site-menu-title">Nilai Puskesmas</span>
+                        </a>
+                    </li>                                    
                 <?php } ?>
 
             </ul>
