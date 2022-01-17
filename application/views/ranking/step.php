@@ -40,7 +40,14 @@
                             <tr>
                                 <td><?php echo $value->nama_alternatif; ?></td>
                                 <?php foreach ($query->result() as $key2 => $value2) { ?>
-                                    <td><?php echo $value2->nilai; ?></td>
+                                    <td><?php 
+                                        $nilai_output = substr($value2->nilai,-2);
+                                        if($nilai_output == "00"){
+                                            echo number_format($value2->nilai,0,",",".");
+                                        }else{
+                                            echo $value2->nilai;
+                                        }
+                                        ?></td>
                                 <?php } ?>
                             </tr>
                         <?php } ?>
