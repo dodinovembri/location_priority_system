@@ -43,7 +43,13 @@
                                     </a>
                                 <td><?php echo $value->nama_kriteria; ?></td>
                                 <td><?php echo $value->jenis_kriteria; ?></td>
-                                <td><?php echo $value->bobot; ?></td>
+                                <td><?php 
+                                $nilai_output = substr($value->bobot,-2);
+                                if($nilai_output == "00"){
+                                    echo number_format($value->bobot,0,",",".");
+                                }else{
+                                    echo $value->bobot;
+                                } ?></td>
                                 <td>
                                     <?php if ($this->session->userdata('role_id') == 1) { ?>
                                         <a href="<?php echo base_url('criteria/show/'); echo $value->id; ?>"><i class="icon wb-eye" aria-hidden="true" style="margin-right: 2px"></i></a>

@@ -45,7 +45,13 @@
                                     <div class="form-group form-material row">
                                         <label class="col-md-3 col-form-label">Bobot Kriteria </label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="bobot" value="<?php echo $criteria->bobot ?>" placeholder="Masukkan Bobot Kriteria" autocomplete="off" required />
+                                            <input type="text" class="form-control" name="bobot" value="<?php 
+                                            $nilai_output = substr($criteria->bobot,-2);
+                                            if($nilai_output == "00"){
+                                                echo number_format($criteria->bobot,0,",",".");
+                                            }else{
+                                                echo $criteria->bobot;
+                                            } ?>" placeholder="Masukkan Bobot Kriteria" autocomplete="off" required />
                                         </div>
                                     </div>
                                     <div class="form-group form-material row">
