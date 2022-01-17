@@ -55,6 +55,14 @@
                                             <textarea class="form-control" name="alamat" rows="3" placeholder="Masukkan Alamat"></textarea>
                                         </div>
                                     </div>
+                                    <br><br>
+                                    <div class="form-group form-material row">
+                                        <label class="col-md-3 col-form-label"></label>
+                                        <div class="col-md-9">
+                                            <button type="submit" class="btn btn-primary">Simpan </button>
+                                            <a href="<?php echo base_url('alternative') ?>"><button type="button" class="btn btn-default btn-outline">Batal</button></a>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>

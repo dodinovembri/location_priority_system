@@ -37,7 +37,13 @@
                                                 <label class="col-md-3 col-form-label"><?php echo $value->nama_kriteria; ?> </label>
                                                 <div class="col-md-9">
                                                     <input type="hidden" name="criteria_id[]" value="<?php echo $value->id_kriteria; ?>">
-                                                    <input type="text" class="form-control" name="criteria_alternative[]" value="<?php echo $value->nilai_alternatif; ?>" placeholder="Masukkan nilai" autocomplete="off" required />
+                                                    <input type="text" class="form-control" name="criteria_alternative[]" value="<?php
+                                                    $nilai_output = substr($value->nilai_alternatif,-2);
+                                                    if($nilai_output == "00"){
+                                                        echo number_format($value->nilai_alternatif,0,",",".");
+                                                    }else{
+                                                        echo $value->nilai_alternatif;
+                                                    }  ?>" placeholder="Masukkan nilai" autocomplete="off" required />
                                                 </div>
                                             </div>
                                         <?php } ?>
