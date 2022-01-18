@@ -39,7 +39,9 @@
                                 <td><?php echo $no; ?></td>
                                 <td><?php echo $query->row()->kode_alternatif; ?></td>
                                 <td><?php echo $query->row()->nama_alternatif; ?></td>
-                                <td><?php echo round($value['preferensi'], 4); ?></td>
+                                <td><?php 
+                                $preferensi_out = str_replace(".",",", round($value['preferensi'], 4));
+                                echo $preferensi_out; ?></td>
                             </tr>
                             <!-- End Modal -->
                         <?php } ?>

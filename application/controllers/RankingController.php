@@ -66,7 +66,8 @@ class RankingController extends CI_Controller {
          * 4. Find ideal solution (A+) and (A-)
          */
         $total_alternative = $total_weigth;
-        $total_count_alternative = $this->RankingModel->countAlternative();
+        $total_count_alternative_x = $this->RankingModel->countAlternative2();
+        $total_count_alternative = (int)$total_count_alternative_x->total;
         $k = 0;
         for ($i = 0; $i < $total_weigth; $i++) {
             for ($j = 0; $j < $total_count_alternative; $j++) {
@@ -223,8 +224,9 @@ class RankingController extends CI_Controller {
          * 4. Find ideal solution (A+) and (A-)
          */
         $total_alternative = $total_weigth;
-        $total_count_alternative = $this->RankingModel->countAlternative();
-
+        $total_count_alternative_x = $this->RankingModel->countAlternative2();
+        $total_count_alternative = (int)$total_count_alternative_x->total;
+        
         $k = 0;
         for ($i = 0; $i < $total_weigth; $i++) {
             for ($j = 0; $j < $total_count_alternative; $j++) {
@@ -325,7 +327,7 @@ class RankingController extends CI_Controller {
         }
 
         // $data['alternatives'] = $this->RankingModel->getAlternative()->result();
-        $data['alternatives'] = $this->AlternativeModel->get()->result();
+        $data['alternatives'] = $this->AlternativeModel->get2()->result();
         // print_r(json_encode($data['alternatives']));
         // die;
         $data['criterias'] = $this->CriteriaModel->get()->result();

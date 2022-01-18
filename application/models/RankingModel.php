@@ -30,6 +30,11 @@ class RankingModel extends CI_Model
         return $this->db->count_all('alternatif');
     }
 
+    public function countAlternative2()
+    {
+        return $this->db->query("SELECT COUNT(id) as total FROM `alternatif` where id IN (SELECT id_alternatif from nilai_alternatif)")->row();
+    }
+
     public function getAlternative()
     {
         return $this->db->get('alternatif');

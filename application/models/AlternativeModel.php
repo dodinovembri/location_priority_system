@@ -12,6 +12,11 @@ class AlternativeModel extends CI_Model
         return $this->db->get($this->_table);
     }
 
+    public function get2($status = NULL)
+    {
+        return $this->db->query("SELECT * FROM `alternatif` where id IN (SELECT id_alternatif from nilai_alternatif)");
+    }
+
     public function insert($data)
     {
         return $this->db->insert($this->_table, $data);

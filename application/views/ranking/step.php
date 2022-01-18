@@ -45,9 +45,11 @@
                                         if($nilai_output == "00"){
                                             echo number_format($value2->nilai,0,",",".");
                                         }else{
-                                            echo $value2->nilai;
+                                            $str_replace = str_replace(".",",", $value2->nilai);
+                                            echo $str_replace;
                                         }
-                                        ?></td>
+                                        ?>
+                                    </td>
                                 <?php } ?>
                             </tr>
                         <?php } ?>
@@ -126,7 +128,9 @@
                             <tr>
                                 <td>Hasil Kuadrat</td>
                                 <?php foreach ($devider as $key3 => $value3) { ?>
-                                    <td><?php echo $value3['nilai']; ?></td>
+                                    <td><?php 
+                                        $str_replace = str_replace(".",",", $value3['nilai']);
+                                        echo $str_replace; ?></td>
                                 <?php } ?>
                             </tr>
                     </tbody>
@@ -172,7 +176,9 @@
                             <tr>
                                 <td><?php echo $value->nama_alternatif; ?></td>
                                 <?php foreach ($data as $key3 => $value3) { ?>
-                                    <td><?php echo $value3; ?></td>
+                                    <td><?php 
+                                        $str_replace = str_replace(".",",", $value3);
+                                        echo $str_replace;?></td>
                                 <?php } ?>
                             </tr>
                         <?php } ?>
@@ -219,7 +225,9 @@
                             <tr>
                                 <td><?php echo $value->nama_alternatif; ?></td>
                                 <?php foreach ($data as $key3 => $value3) { ?>
-                                    <td><?php echo $value3; ?></td>
+                                    <td><?php 
+                                        $str_replace = str_replace(".",",", $value3);
+                                        echo $str_replace;?></td>
                                 <?php } ?>
                             </tr>
                         <?php } ?>
@@ -253,13 +261,17 @@
                             <tr>
                                 <td>Solusi Ideal Positif (A+)</td>
                                 <?php foreach ($a_positive as $key3 => $value3) { ?>
-                                    <td><?php echo $value3; ?></td>
+                                    <td><?php 
+                                        $str_replace = str_replace(".",",", $value3);
+                                        echo $str_replace;?></td>
                                 <?php } ?>
                             </tr>
                             <tr>
                                 <td>Solusi Ideal Negatif (A-)</td>
                                 <?php foreach ($a_negative as $key3 => $value3) { ?>
-                                    <td><?php echo $value3; ?></td>
+                                    <td><?php 
+                                        $str_replace = str_replace(".",",", $value3);
+                                        echo $str_replace;?></td>
                                 <?php } ?>
                             </tr>
                     </tbody>
@@ -299,8 +311,12 @@
                             <tr>
                                 <td><?php echo $query->row()->kode_alternatif; ?></td>
                                 <td><?php echo $query->row()->nama_alternatif; ?></td>
-                                <td><?php echo $value['d_positif']; ?></td>
-                                <td><?php echo $value['d_negatif']; ?></td>
+                                <td><?php 
+                                $d_positif_out = str_replace(".",",", $value['d_positif']);
+                                echo $d_positif_out; ?></td>
+                                <td><?php 
+                                $d_negatif_out = str_replace(".",",", $value['d_negatif']);
+                                echo $d_negatif_out; ?></td>
                             </tr>
                             <!-- End Modal -->
                         <?php } ?>
@@ -347,7 +363,9 @@
                             <tr>
                                 <td><?php echo $query->row()->kode_alternatif; ?></td>
                                 <td><?php echo $query->row()->nama_alternatif; ?></td>
-                                <td><?php echo round($value1['preferensi'], 4); ?></td>
+                                <td><?php 
+                                $preferensi_out = str_replace(".",",", round($value1['preferensi'], 4));
+                                echo $preferensi_out;?></td>
                                 <td><?php echo $ranking; ?></td>
                             </tr>
                             <!-- End Modal -->
