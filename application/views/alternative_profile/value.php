@@ -40,7 +40,11 @@
                                                     <input type="text" class="form-control" name="criteria_alternative[]" value="<?php
                                                     $nilai_output = substr($value->nilai_alternatif,-2);
                                                     if($nilai_output == "00"){
-                                                        echo number_format($value->nilai_alternatif,0,",",".");
+                                                        if (strlen($value->nilai_alternatif) > 6) {
+                                                            echo number_format($value->nilai_alternatif,0,",","");
+                                                        }else{
+                                                            echo number_format($value->nilai_alternatif,0,",",".");
+                                                        }
                                                     }else{
                                                         echo $value->nilai_alternatif;
                                                     }  ?>" placeholder="Masukkan nilai" autocomplete="off" required />

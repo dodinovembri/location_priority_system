@@ -78,6 +78,8 @@ class AlternativeProfileController extends CI_Controller {
     public function update_value($id)
     {
         $criteria_alternative = $this->input->post('criteria_alternative');
+        // print_r($criteria_alternative);
+        // die;
         $criteria_id = $this->input->post('criteria_id');
         $this->AlternativeValueModel->destroy_by_alternative($id);
 
